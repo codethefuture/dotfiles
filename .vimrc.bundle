@@ -2,12 +2,12 @@ set nocompatible               " be iMproved
 filetype off                   " required!
 
 "if has('vim_starting')
-"  set runtimepath+=~/.vim/bundle/neobundle.vim
-"  call neobundle#rc(expand('~/.vim/bundle/'))
+"  set runtimepath+=~/dotfiles/bundle/neobundle.vim
+"  call neobundle#rc(expand('~/dotfiles/bundle/'))
 "endif
 
 " let Vundle manage Vundle
-set rtp+=~/.vim/bundle/vundle/ " パスを変更
+set rtp+=~/dotfiles/bundle/vundle/ " パスを変更
 call vundle#rc()
 Bundle 'gmarik/vundle'
 

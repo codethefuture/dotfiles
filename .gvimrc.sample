@@ -1,0 +1,23 @@
+"------------------------------------
+"" MacVim
+"------------------------------------
+
+if has('gui_macvim')
+  set showtabline=2 " タブを常に表示
+  set imdisable " IMを無効化
+  set transparency=7 " 透明度を指定
+  set antialias
+  set guifont=Ricty_for_Powerline:h18
+  set columns=160
+  set lines=50
+
+  set guioptions+=a
+  set guioptions-=T   " メニューなんぞ要らない
+
+  colorscheme jellybeans
+  "colorscheme Solarized
+
+  au GUIEnter * set fullscreen
+
+endif
+

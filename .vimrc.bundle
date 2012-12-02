@@ -149,8 +149,8 @@ Bundle 'h1mesuke/vim-alignta'
 Bundle 'git://github.com/vim-ruby/vim-ruby.git'
 " Ruby on Rails
 Bundle 'tpope/vim-rails.git'
-" " Coffee-script
-" "Bundle 'kchmck/vim-coffee-script'
+" Coffee-script
+Bundle 'kchmck/vim-coffee-script'
 " " Java
 " "Bundle 'java.vim'
 

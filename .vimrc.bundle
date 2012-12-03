@@ -33,7 +33,7 @@ if $SUDO_USER != ''
 else
   Bundle 'git://github.com/Shougo/neocomplcache.git'
   " neocomplcacheのsinpet補間
-  "Bundle 'git://github.com/Shougo/neosnippet'
+  Bundle 'git://github.com/Shougo/neosnippet'
 endif
 " 対応する括弧等を補間
 "Bundle 'git://github.com/kana/vim-smartinput.git'

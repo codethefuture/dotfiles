@@ -307,7 +307,7 @@ inoremap <expr><C-g>     neocomplcache#undo_completion()
 inoremap <expr><C-l>     neocomplcache#complete_common_string()
 
 " SuperTab like snippets behavior.
-"imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " Recommended key-mappings.
 " <CR>: close popup and save indent.
@@ -388,6 +388,17 @@ let g:neocomplcache_dictionary_filetype_lists = {
   \ 'css' : $HOME.'/dotfiles/snippets/css.snippets',
   \ 'javascript' : $HOME.'/dotfiles/snippets/javascript.snippets'
   \ }
+
+" snipMate再読み込み。xxx.snippetを開いているときに:call SnipMateReload()すればＯＫ
+function! SnipMateReload()
+    if &ft == 'snippet'
+        let ft = substitute(expand('%'), '.snippets', '', '')
+        if has_key(g:did_ft, ft)
+            unlet g:did_ft[ft]
+        endif
+        silent! call GetSnippets(g:snippets_dir, ft)
+    endif
+endfunction
 
 "------------------------------------
 " surround.vim

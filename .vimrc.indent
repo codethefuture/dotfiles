@@ -2,14 +2,19 @@
 " インデント Indent
 "-------------------------------------------------------------------------------
 if has("autocmd")
+  " 80行で改行しようねという圧迫感
+  set colorcolumn=+1,+11,+21,+31,+41
   "ファイルタイプの検索を有効にする
   filetype plugin on
   "そのファイルタイプにあわせたインデントを利用する
   filetype indent on
   " これらのftではインデントを無効に
   "autocmd FileType php filetype indent off
-  autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
-  autocmd BufRead,BufNewFile *.html.erb set filetype=eruby.html
+  autocmd BufRead,BufNewFile *.erb set filetype=eruby
+  "autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
+  autocmd BufRead,BufNewFile *.html.erb set filetype=eruby
+  "autocmd BufRead,BufNewFile *.html.erb set filetype=eruby.html
+  "autocmd BufRead,BufNewFile *.html.erb set filetype=html.eruby
 
   autocmd FileType as         setlocal sw=4 sts=4 ts=4 et
   autocmd FileType mxml       setlocal sw=4 sts=4 ts=4 et

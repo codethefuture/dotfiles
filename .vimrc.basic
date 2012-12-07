@@ -150,7 +150,12 @@ nnoremap <C-i><C-i> :<C-u>help<Space><C-r><C-w><Enter>
 autocmd! BufNewFile,BufRead *.ts setf typescript
 
 " QuickFix を自動で開く
+" grep 等をしたら QF 自動で開く
 autocmd QuickfixCmdPost make,grep,grepadd,vimgrep if len(getqflist()) != 0 | copen | endif
+
+" 範囲選択して Tab でインデント
+vnoremap <tab> >gv
+vnoremap <S-tab> <gv
 
 "------------------------------------
 "typescript auto js

@@ -1,6 +1,0 @@
-source $HOME/dotfiles/.vimrc.basic
-source $HOME/dotfiles/.vimrc.bundle
-source $HOME/dotfiles/.vimrc.statusline
-source $HOME/dotfiles/.vimrc.plugins_setting
-source $HOME/dotfiles/.vimrc.color
-source $HOME/dotfiles/.vimrc.indent

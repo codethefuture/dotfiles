@@ -1,0 +1,213 @@
+set nocompatible               " be iMproved
+filetype off                   " required!
+
+"if has('vim_starting')
+"  set runtimepath+=~/.vim/bundle/neobundle.vim
+"  call neobundle#rc(expand('~/.vim/bundle/'))
+"endif
+
+" let Vundle manage Vundle
+set rtp+=~/.vim/bundle/vundle/ " パスを変更
+call vundle#rc()
+Bundle 'gmarik/vundle'
+
+" " インデント
+" Bundle 'IndentAnything'
+" インデントを見やすく
+Bundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
+" " シングルクォートで囲まれたテキストをダブるクォートで囲むように変換
+" " テキストを括弧で囲む／削除する
+" Bundle 'tpope/vim-surround'
+" " ビジュアルモードや行単位でコメントアウトしたりコメントをハズしたり
+Bundle 'The-NERD-Commenter'
+" "Bundle 'scrooloose/nerdcommenter.git'
+" " 簡単にoperatorを定義できるようにする
+Bundle 'operator-user'
+" " zoom
+" "Bundle 'zoom.vim'
+" "
+" "Bundle 'line-diff'
+
+" 補間
+if $SUDO_USER != ''
+else
+  Bundle 'git://github.com/Shougo/neocomplcache.git'
+  " neocomplcacheのsinpet補間
+  Bundle 'git://github.com/Shougo/neosnippet'
+endif
+" 対応する括弧等を補間
+"Bundle 'git://github.com/kana/vim-smartinput.git'
+
+" Grep
+"Bundle 'grep.vim'
+" タブエディタ風にバッファ管理ウィンドウを表示する
+Bundle 'minibufexpl.vim'
+" バッファやファイルなど様々な入力ソースを検索しファイルを開いたりディレクトリ移動したりyankしたり
+if $SUDO_USER != ''
+else
+  Bundle 'Shougo/unite.vim.git'
+  " unite-rails
+  " unite-ouline
+endif
+" ステータスライン
+Bundle 'Lokaltog/vim-powerline'
+
+" ファイラー
+" Tree :NERDTree
+"Bundle 'The-NERD-tree'
+" ツリー状にファイルやディレクトリの一覧を表示
+"Bundle 'vtreeexplorer'
+" ファイラー
+" Bundle 'git://github.com/Shougo/vimfiler.git'
+" Bundle 'git://github.com/spolu/dwm.vim.git'
+
+" 外部コマンドを非同期で実行可能に
+if $SUDO_USER != ''
+else
+  Bundle 'Shougo/vimshell.git'
+  Bundle 'Shougo/vimproc'
+  " Vim上でプログラムを実行。編集中のファイルを簡単に実行できるプラグイン
+  Bundle 'thinca/vim-quickrun.git'
+endif
+
+" " ソースコードを追いかけるのに便利
+" Bundle 'Source-Explorer-srcexpl.vim'
+" " マニュアルなどを見る :Unite ref/...
+" Bundle 'thinca/vim-ref'
+" " テキスト整形
+" Bundle 'Align'
+" カラーテーマ
+Bundle 'git://github.com/nanotech/jellybeans.vim.git'
+" Bundle 'molokai'
+" Bundle 'nelstrom/vim-mac-classic-theme'
+" Bundle 'altercation/vim-colors-solarized'
+" Bundle 'gmarik/ingretu'
+" Bundle 'git://github.com/jpo/vim-railscasts-theme.git'
+"Bundle 'git://github.com/chriskempson/tomorrow-theme.git'
+
+" if has("gui_running")
+  " colorscheme ingretu
+" endif
+" " %による対応括弧へのカーソル移動機能を拡張
+" Bundle 'matchit.zip'
+" " Twitter :FriendsTwitter :PosttoTwitter :UserTwitter :RepliesTwitter :NextTwitter
+" Bundle 'TwitVim'
+" " Jabber
+" Bundle 'git://gitorious.org/vim-jabber/vim-jabber.git'
+
+" nginx conf
+" Bundle 'nginx.vim'
+
+" Browser Open
+" Bundle 'open-browser.vim'
+
+" SVN
+" Bundle 'svn-diff.vim'
+" http://d.hatena.ne.jp/thinca/20100218/1266485042
+"Bundle 'git://github.com/thinca/vim-ft-svn_diff.git'
+
+" Git
+"Bundle 'Shougo/git-vim'
+" Bundle 'tpope/vim-git'
+Bundle 'tpope/vim-fugitive'
+" Bundle 'github:mattn/gist-vim.git'
+" Bundle 'rstacruz/sparkup.git', {'rtp': 'vim/'}
+
+"Bundle 'fugitive'
+"Bundle 'extraite'
+"Bundle 'closetag'
+
+" Bundle 'gmarik/github-search.vim'
+" Bundle 'gmarik/ide-popup.vim'
+" Bundle 'gmarik/sudo-gui.vim'
+
+" アンドゥ／リドゥの履歴
+Bundle 'Gundo'
+"Bundle 'git://github.com/sjl/gundo.vim.git'
+
+" 移動履歴
+" Bundle 'git://thinca/vim-poslist.git'
+
+" Bundle 'mkitt/browser-refresh.vim'
+" com! ONRRB :au! BufWritePost <buffer> :RRB
+" com! NORRB :au! BufWritePost <buffer>
+
+" YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
+Bundle 'YankRing.vim'
+" マルチバイト対応の整形
+Bundle 'h1mesuke/vim-alignta'
+" クリップボードにヤンクする
+"Bundle 'git://github.com/vim-scripts/yanktmp.vim.git'
+" CUI版Vimからクリップボードを有効にする
+"Bundle 'git://github.com/kana/vim-fakeclip.git'
+
+" ソースコード上のメソッド宣言、変数宣言の一覧を表示
+" Bundle 'taglist.vim'
+" Bundle 'git://github.com/majutsushi/tagbar.git'
+
+" Ruby補完機能+ruby
+Bundle 'git://github.com/vim-ruby/vim-ruby.git'
+" Ruby on Rails
+Bundle 'tpope/vim-rails.git'
+" Coffee-script
+Bundle 'kchmck/vim-coffee-script'
+" " Java
+" "Bundle 'java.vim'
+
+" エラーがある場所をhilight
+Bundle 'errormarker.vim'
+
+" " XMLとかHTMLとかの編集機能を強化する
+" Bundle 'xmledit'
+
+" "JSX
+" "Bundle 'git://github.com/jsx/jsx.vim.git'
+" "Bundle 'git://github.com/jsx/JSX.git'
+" "Bundle 'git://github.com/osyo-manga/neocomplcache-jsx.git'
+
+"------------------------------------
+" HTML5
+"------------------------------------
+" javascript neocomplcache plugin
+Bundle 'git://github.com/teramako/jscomplete-vim.git'
+" Javascript syntax
+Bundle 'JavaScript-syntax'
+" Javascript indent
+Bundle 'pangloss/vim-javascript'
+" JavaScript をGoogleStyleで整形する
+Bundle 'git://github.com/teppeis/fixclosure.git'
+" Typescript Syntax
+"Bundle 'git://github.com/leafgarland/typescript-vim.git'
+" Zen-coding
+Bundle 'git://github.com/mattn/zencoding-vim.git'
+
+"Compass
+Bundle 'git://github.com/chriseppstein/compass.git'
+"SCSS
+"Bundle 'git://github.com/cakebaker/scss-syntax.vim.git'
+"Bundle 'git://github.com/AtsushiM/css-skelton.vim.git'
+
+" ActionScript
+"Bundle 'git://github.com/endel/actionscript.vim.git'
+
+" SQLUtilities : SQL整形、生成ユーティリティ
+" Bundle 'SQLUtilities'
+
+" " HTML5
+" " cd html5.vim && make install
+" Bundle 'git://github.com/othree/html5.vim.git'
+" Bundle 'git://github.com/hail2u/vim-css3-syntax.git'
+
+" " Markdown
+" Bundle 'git://github.com/tpope/vim-markdown.git'
+" Bundle 'git://github.com/kakkyz81/evervim.git'
+
+" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
+"
+" sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
+"
+Bundle 'git://github.com/scrooloose/syntastic.git'
+
+filetype plugin indent on
+
+

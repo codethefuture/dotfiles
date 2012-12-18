@@ -235,7 +235,7 @@ bindkey '^R' history-incremental-pattern-search-backward
 bindkey '^S' history-incremental-pattern-search-forward
 
 ## Command history configuration
-HISTFILE=~/dotfiles/.zsh_history
+HISTFILE=~/.zsh/.zsh_history
 HISTSIZE=10000
 SAVEHIST=10000
 
@@ -485,7 +485,7 @@ expand-to-home-or-insert () {
 }
 
 # C-M-h でチートシートを表示する
-cheat-sheet () { zle -M "`cat ~/dotfiles/.zsh/cheat-sheet`" }
+cheat-sheet () { zle -M "`cat ~/.zsh/.zsh/cheat-sheet`" }
 zle -N cheat-sheet
 # bindkey "^[^h" cheat-sheet
 
@@ -655,25 +655,25 @@ function __rm_single_file(){
 
 ## alias設定
 #
-[ -f ~/dotfiles/.zshrc.alias ] && source ~/dotfiles/.zshrc.alias
+[ -f ~/.zsh/.zshrc.alias ] && source ~/.zsh/.zshrc.alias
 
 case "${OSTYPE}" in
 # Mac(Unix)
 darwin*)
     # ここに設定
-    [ -f ~/dotfiles/.zshrc.osx ] && source ~/dotfiles/.zshrc.osx
+    [ -f ~/.zsh/.zshrc.osx ] && source ~/.zsh/.zshrc.osx
     ;;
 # Linux
 linux*)
     # ここに設定
-    [ -f ~/dotfiles/.zshrc.linux ] && source ~/dotfiles/.zshrc.linux
+    [ -f ~/.zsh/.zshrc.linux ] && source ~/.zsh/.zshrc.linux
     ;;
 esac
 
 
 ## local固有設定
 #
-[ -f ~/.zshrc.local ] && source ~/.zshrc.local
+[ -f ~/.zsh/.zshrc.local ] && source ~/.zsh/.zshrc.local
 
 # tmux 自動起動
 # if [ -z "$TMUX" -a -z "$STY" ]; then

@@ -19,5 +19,8 @@ if has('gui_macvim')
 
   au GUIEnter * set fullscreen
 
+  " used when updatetime value set by plugin (100ms)
+  let g:cssColorVimDoNotMessMyUpdatetime = 1
+
 endif
 

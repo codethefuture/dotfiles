@@ -14,6 +14,7 @@ endif
 " 02=JavaScript, CSS, SASS, SCSS, LESS
 " 03=SVN, Git
 " 04=ColorTheme
+" 09=other
 " 上記以降未整理
 "--------------------------------------------------------------------------------------------
 
@@ -108,9 +109,58 @@ NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
 " if has("gui_running")
   " colorscheme ingretu
 " endif
+
+" ステータスライン
+NeoBundle 'Lokaltog/vim-powerline'
 "--------------------------------------------------------------------------------------------
 
+"--------------------------------------------------------------------------------------------
+" ファイラー
+" バッファやファイルなど様々な入力ソースを検索しファイルを開いたりディレクトリ移動したりyankしたり
+if $SUDO_USER != ''
+else
+  NeoBundle 'Shougo/unite.vim.git'
+  " unite-rails
+  " unite-ouline
+endif
+" Tree :NERDTree
+" NeoBundle 'The-NERD-tree'
+" ツリー状にファイルやディレクトリの一覧を表示
+" NeoBundle 'vtreeexplorer'
+" NeoBundle 'git://github.com/Shougo/vimfiler.git'
+" NeoBundle 'git://github.com/spolu/dwm.vim.git'
+NeoBundle 'git://github.com/vim-scripts/FuzzyFinder.git'
+NeoBundle 'git://github.com/vim-scripts/L9.git'
 
+"--------------------------------------------------------------------------------------------
+" アンドゥ／リドゥの履歴
+NeoBundle 'git://github.com/sjl/gundo.vim.git'
+" YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
+NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
+" マルチバイト対応の整形
+NeoBundle 'h1mesuke/vim-alignta'
+" クリップボードにヤンクする
+"NeoBundle 'git://github.com/vim-scripts/yanktmp.vim.git'
+" CUI版Vimからクリップボードを有効にする
+"NeoBundle 'git://github.com/kana/vim-fakeclip.git'
+" 移動履歴
+" NeoBundle 'git://thinca/vim-poslist.git'
+
+"--------------------------------------------------------------------------------------------
+" " ソースコードを追いかけるのに便利
+" NeoBundle 'Source-Explorer-srcexpl.vim'
+" " マニュアルなどを見る :Unite ref/...
+" NeoBundle 'thinca/vim-ref'
+" ソースコード上のメソッド宣言、変数宣言の一覧を表示
+" brew install ctags
+" NeoBundle 'git://github.com/majutsushi/tagbar.git'
+" Grep
+" NeoBundle 'grep.vim'
+
+
+"--------------------------------------------------------------------------------------------
+" " テキスト整形
+" NeoBundle 'Align'
 " " インデント
 " NeoBundle 'IndentAnything'
 " インデントを見やすく
@@ -123,95 +173,8 @@ NeoBundle 'The-NERD-Commenter'
 " "NeoBundle 'scrooloose/nerdcommenter.git'
 " " 簡単にoperatorを定義できるようにする
 NeoBundle 'operator-user'
-" " zoom
-" "NeoBundle 'zoom.vim'
-" "
-" "NeoBundle 'line-diff'
 
-" Grep
-"NeoBundle 'grep.vim'
-" タブエディタ風にバッファ管理ウィンドウを表示する
-"NeoBundle 'minibufexpl.vim'
-" バッファやファイルなど様々な入力ソースを検索しファイルを開いたりディレクトリ移動したりyankしたり
-if $SUDO_USER != ''
-else
-  NeoBundle 'Shougo/unite.vim.git'
-  " unite-rails
-  " unite-ouline
-endif
-" ステータスライン
-NeoBundle 'Lokaltog/vim-powerline'
-
-" ファイラー
-" Tree :NERDTree
-"NeoBundle 'The-NERD-tree'
-" ツリー状にファイルやディレクトリの一覧を表示
-"NeoBundle 'vtreeexplorer'
-" ファイラー
-" NeoBundle 'git://github.com/Shougo/vimfiler.git'
-" NeoBundle 'git://github.com/spolu/dwm.vim.git'
-
-" 外部コマンドを非同期で実行可能に
-if $SUDO_USER != ''
-else
-  NeoBundle 'Shougo/vimshell.git'
-  NeoBundle 'Shougo/vimproc'
-  " Vim上でプログラムを実行。編集中のファイルを簡単に実行できるプラグイン
-  NeoBundle 'thinca/vim-quickrun.git'
-endif
-
-" " ソースコードを追いかけるのに便利
-" NeoBundle 'Source-Explorer-srcexpl.vim'
-" " マニュアルなどを見る :Unite ref/...
-" NeoBundle 'thinca/vim-ref'
-" " テキスト整形
-" NeoBundle 'Align'
-"
-" " %による対応括弧へのカーソル移動機能を拡張
-" NeoBundle 'matchit.zip'
-" " Twitter :FriendsTwitter :PosttoTwitter :UserTwitter :RepliesTwitter :NextTwitter
-" NeoBundle 'TwitVim'
-" " Jabber
-" NeoBundle 'git://gitorious.org/vim-jabber/vim-jabber.git'
-
-" nginx conf
-" NeoBundle 'nginx.vim'
-
-" Browser Open
-" NeoBundle 'open-browser.vim'
-
-"NeoBundle 'fugitive'
-"NeoBundle 'extraite'
-"NeoBundle 'closetag'
-
-" NeoBundle 'gmarik/github-search.vim'
-" NeoBundle 'gmarik/ide-popup.vim'
-" NeoBundle 'gmarik/sudo-gui.vim'
-
-" アンドゥ／リドゥの履歴
-NeoBundle 'Gundo'
-"NeoBundle 'git://github.com/sjl/gundo.vim.git'
-
-" 移動履歴
-" NeoBundle 'git://thinca/vim-poslist.git'
-
-" NeoBundle 'mkitt/browser-refresh.vim'
-" com! ONRRB :au! BufWritePost <buffer> :RRB
-" com! NORRB :au! BufWritePost <buffer>
-
-" YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
-NeoBundle 'YankRing.vim'
-" マルチバイト対応の整形
-NeoBundle 'h1mesuke/vim-alignta'
-" クリップボードにヤンクする
-"NeoBundle 'git://github.com/vim-scripts/yanktmp.vim.git'
-" CUI版Vimからクリップボードを有効にする
-"NeoBundle 'git://github.com/kana/vim-fakeclip.git'
-
-" ソースコード上のメソッド宣言、変数宣言の一覧を表示
-" NeoBundle 'taglist.vim'
-" NeoBundle 'git://github.com/majutsushi/tagbar.git'
-
+"--------------------------------------------------------------------------------------------
 " Ruby補完機能+ruby
 NeoBundle 'git://github.com/vim-ruby/vim-ruby.git'
 " Ruby on Rails
@@ -238,6 +201,49 @@ NeoBundle 'kchmck/vim-coffee-script'
 " " Markdown
 " NeoBundle 'git://github.com/tpope/vim-markdown.git'
 " NeoBundle 'git://github.com/kakkyz81/evervim.git'
+
+" nginx conf
+" NeoBundle 'nginx.vim'
+
+"--------------------------------------------------------------------------------------------
+" 外部コマンドを非同期で実行可能に
+if $SUDO_USER != ''
+else
+  NeoBundle 'Shougo/vimshell.git'
+  NeoBundle 'Shougo/vimproc'
+  " Vim上でプログラムを実行。編集中のファイルを簡単に実行できるプラグイン
+  NeoBundle 'thinca/vim-quickrun.git'
+endif
+
+"--------------------------------------------------------------------------------------------
+" 09=other
+
+"NeoBundle 'fugitive'
+"NeoBundle 'extraite'
+"NeoBundle 'closetag'
+
+" NeoBundle 'gmarik/github-search.vim'
+" NeoBundle 'gmarik/ide-popup.vim'
+" NeoBundle 'gmarik/sudo-gui.vim'
+
+" " zoom
+" "NeoBundle 'zoom.vim'
+" "NeoBundle 'line-diff'
+" タブエディタ風にバッファ管理ウィンドウを表示する
+"NeoBundle 'minibufexpl.vim'
+
+" " %による対応括弧へのカーソル移動機能を拡張
+" NeoBundle 'matchit.zip'
+" " Twitter :FriendsTwitter :PosttoTwitter :UserTwitter :RepliesTwitter :NextTwitter
+" NeoBundle 'TwitVim'
+" " Jabber
+" NeoBundle 'git://gitorious.org/vim-jabber/vim-jabber.git'
+
+" Browser Open
+" NeoBundle 'open-browser.vim'
+" NeoBundle 'mkitt/browser-refresh.vim'
+" com! ONRRB :au! BufWritePost <buffer> :RRB
+" com! NORRB :au! BufWritePost <buffer>
 
 
 "--------------------------------------------------------------------------------------------

@@ -130,7 +130,9 @@ endif
 " NeoBundle 'git://github.com/Shougo/vimfiler.git'
 " NeoBundle 'git://github.com/spolu/dwm.vim.git'
 NeoBundle 'git://github.com/vim-scripts/FuzzyFinder.git'
+"NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
 NeoBundle 'git://github.com/vim-scripts/L9.git'
+"NeoBundle 'https://bitbucket.org/ns9tks/vim-l9'
 
 "--------------------------------------------------------------------------------------------
 " アンドゥ／リドゥの履歴

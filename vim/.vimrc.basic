@@ -326,9 +326,9 @@ augroup END
 
 augroup SkeletonAu
   autocmd!
-  autocmd BufNewFile *.html 0r $HOME/.vim/skeleton/skeleton.html
-  autocmd BufNewFile *.css 0r $HOME/.vim/skeleton/skeleton.css
-  autocmd BufNewFile *.js 0r $HOME/.vim/skeleton/skeleton.js
+  autocmd BufNewFile *.html 0r $HOME/.vim/skeletons-vim/skeleton.html
+  autocmd BufNewFile *.css 0r $HOME/.vim/skeletons-vim/skeleton.css
+  autocmd BufNewFile *.js 0r $HOME/.vim/skeletons-vim/skeleton.js
 augroup END
 
 

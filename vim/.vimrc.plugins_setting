@@ -63,6 +63,11 @@ let g:html5_microdata_attributes_complete = 0
 let g:html5_aria_attributes_complete = 0
 
 "------------------------------------
+" vim-less.vim
+"------------------------------------
+nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+"------------------------------------
 " TwitVim.vim
 "------------------------------------
 let twitvim_count = 40
@@ -363,7 +368,7 @@ let g:jscomplete_use = ['dom', 'moz']
 " snippets
 "------------------------------------
 
-let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.vim/snipmate-snippets/snippets'
 
 " let g:snippets_dir = $HOME.'/.vim/snippets'
 

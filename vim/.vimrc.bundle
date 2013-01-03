@@ -207,6 +207,9 @@ NeoBundle 'kchmck/vim-coffee-script'
 " nginx conf
 " NeoBundle 'nginx.vim'
 
+" Objective-C
+" NeoBundle 'Bundle 'git://github.com/Rip-Rip/clang_complete.git''
+
 "--------------------------------------------------------------------------------------------
 " 外部コマンドを非同期で実行可能に
 if $SUDO_USER != ''

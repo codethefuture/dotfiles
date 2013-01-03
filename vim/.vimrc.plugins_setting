@@ -363,6 +363,21 @@ endif
 "let g:neocomplcache_omni_functions.javascript = ['nodejscomplete#CompleteJS', 'javascriptcomplete#CompleteJS']
 let g:jscomplete_use = ['dom', 'moz']
 
+" Objective-C
+" if !exists('g:neocomplcache_force_omni_patterns')
+"   let g:neocomplcache_force_omni_patterns = {}
+" endif
+" let g:neocomplcache_force_overwrite_completefunc = 1
+" let g:neocomplcache_force_omni_patterns.c =
+"   \ '[^.[:digit:] *\t]\%(\.\|->\)'
+" let g:neocomplcache_force_omni_patterns.cpp =
+"   \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" let g:neocomplcache_force_omni_patterns.objc =
+"   \ '[^.[:digit:] *\t]\%(\.\|->\)'
+" let g:neocomplcache_force_omni_patterns.objcpp =
+"   \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" let g:clang_complete_auto = 0
+" let g:clang_auto_select = 0
 
 "------------------------------------
 " snippets
@@ -540,10 +555,10 @@ nnoremap <silent> tp :<C-u>tabprevious<CR>
 nnoremap <Space>f f
 nnoremap <Space>F F
 nnoremap f <Nop>
-nnoremap <silent> fb :<C-u>FuzzyFinderBuffer!<CR>
-nnoremap <silent> ff :<C-u>FuzzyFinderFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-nnoremap <silent> fm :<C-u>FuzzyFinderMruFile!<CR>
-nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FuzzyFinderBuffer!<CR>
-nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FuzzyFinderFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
-nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FuzzyFinderMruFile!<CR>
+nnoremap <silent> fb :<C-u>FufBuffer!<CR>
+nnoremap <silent> ff :<C-u>FufFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+nnoremap <silent> fm :<C-u>FufMruFile!<CR>
+nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
+nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
+nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
 

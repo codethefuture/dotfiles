@@ -158,6 +158,8 @@ NeoBundle 'h1mesuke/vim-alignta'
 " NeoBundle 'git://github.com/majutsushi/tagbar.git'
 " Grep
 " NeoBundle 'grep.vim'
+" Directory Diff
+" NeoBundle 'git://github.com/vim-scripts/DirDiff.vim.git'
 
 
 "--------------------------------------------------------------------------------------------

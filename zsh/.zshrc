@@ -401,7 +401,7 @@ esac
 case "${OSTYPE}" in
 # MacOSX
 darwin*)
-    export PATH=/usr/local/bin/:$PATH
+    export PATH=/usr/local/bin/:/usr/local/share/npm/bin:$PATH
     export PATH=$PATH:/System/Library/PrivateFrameworks/Apple80211.framework/Versions/A/Resources/
     ;;
 freebsd*)

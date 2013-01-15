@@ -7,7 +7,7 @@ if has('gui_macvim')
   set imdisable " IMを無効化
   set transparency=7 " 透明度を指定
   set antialias
-  set guifont=Ricty_for_Powerline:h18
+  set guifont=Ricty_for_Powerline:h16
   set columns=160
   set lines=50
 
@@ -18,6 +18,9 @@ if has('gui_macvim')
   "colorscheme Solarized
 
   au GUIEnter * set fullscreen
+
+  " used when updatetime value set by plugin (100ms)
+  let g:cssColorVimDoNotMessMyUpdatetime = 1
 
 endif
 

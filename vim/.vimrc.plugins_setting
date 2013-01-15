@@ -63,6 +63,11 @@ let g:html5_microdata_attributes_complete = 0
 let g:html5_aria_attributes_complete = 0
 
 "------------------------------------
+" vim-less.vim
+"------------------------------------
+nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
+
+"------------------------------------
 " TwitVim.vim
 "------------------------------------
 let twitvim_count = 40
@@ -358,12 +363,27 @@ endif
 "let g:neocomplcache_omni_functions.javascript = ['nodejscomplete#CompleteJS', 'javascriptcomplete#CompleteJS']
 let g:jscomplete_use = ['dom', 'moz']
 
+" Objective-C
+" if !exists('g:neocomplcache_force_omni_patterns')
+"   let g:neocomplcache_force_omni_patterns = {}
+" endif
+" let g:neocomplcache_force_overwrite_completefunc = 1
+" let g:neocomplcache_force_omni_patterns.c =
+"   \ '[^.[:digit:] *\t]\%(\.\|->\)'
+" let g:neocomplcache_force_omni_patterns.cpp =
+"   \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" let g:neocomplcache_force_omni_patterns.objc =
+"   \ '[^.[:digit:] *\t]\%(\.\|->\)'
+" let g:neocomplcache_force_omni_patterns.objcpp =
+"   \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+" let g:clang_complete_auto = 0
+" let g:clang_auto_select = 0
 
 "------------------------------------
 " snippets
 "------------------------------------
 
-let g:neosnippet#snippets_directory='~/.vim/bundle/snipmate-snippets/snippets'
+let g:neosnippet#snippets_directory='~/.vim/snipmate-snippets/snippets'
 
 " let g:snippets_dir = $HOME.'/.vim/snippets'
 
@@ -435,21 +455,6 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 
 "------------------------------------
-" taglist
-"------------------------------------
-set tags=tags
-let Tlist_Show_One_File = 1 "現在編集中のソースのタグしか表示しない
-let Tlist_Exit_OnlyWiindow = 1 "taglist が最後のウインドウなら vim を閉じる
-let Tlist_Use_Right_Window = 1
-let Tlist_WinWidth = 40
-let Tlist_File_Fold_Auto_Close = 1
-let Tlist_Process_File_Always = 1
-let Tlist_Enable_Fold_Column = 0
-let Tlist_GainFocus_On_ToggleOpen = 1
-let Tlist_Sort_Type = "name"
-map <silent> <leader>tl :TlistToggle<CR>
-
-"------------------------------------
 " align.vim
 "------------------------------------
 let g:Align_xstrlen=3
@@ -492,6 +497,33 @@ let g:RefreshRunningBrowserReturnFocus = 0
 " map <silent> sP :call YanktmpPaste_P()<CR>
 
 "------------------------------------
+" gundo.vim
+"------------------------------------
+
+nmap U :<C-u>GundoToggle<CR>
+
+"------------------------------------
+" tagbar.vim
+"------------------------------------
+set tags=~/.tags
+nmap <F8> :TagbarToggle<CR>
+
+"------------------------------------
+" taglist
+"------------------------------------
+" set tags=~/.tags
+" let Tlist_Show_One_File = 1 "現在編集中のソースのタグしか表示しない
+" let Tlist_Exit_OnlyWiindow = 1 "taglist が最後のウインドウなら vim を閉じる
+" let Tlist_Use_Right_Window = 1
+" let Tlist_WinWidth = 40
+" let Tlist_File_Fold_Auto_Close = 1
+" let Tlist_Process_File_Always = 1
+" let Tlist_Enable_Fold_Column = 0
+" let Tlist_GainFocus_On_ToggleOpen = 1
+" let Tlist_Sort_Type = "name"
+" map <silent> <leader>tl :TlistToggle<CR>
+
+"------------------------------------
 " vim-indent-guides.vim
 "------------------------------------
 
@@ -506,5 +538,27 @@ augroup indentguides
 augroup END
 let g:indent_guides_enable_on_vim_startup = 1
 
+"------------------------------------
+" vim-indent-guides.vim
+"------------------------------------
 
+" Tabs
+nnoremap <Space>t t
+nnoremap <Space>T T
+nnoremap t <Nop>
+nnoremap <silent> tc :<C-u>tabnew<CR>:tabmove<CR>
+nnoremap <silent> tk :<C-u>tabclose<CR>
+nnoremap <silent> tn :<C-u>tabnext<CR>
+nnoremap <silent> tp :<C-u>tabprevious<CR>
+
+" FuzzyFinder.vim
+nnoremap <Space>f f
+nnoremap <Space>F F
+nnoremap f <Nop>
+nnoremap <silent> fb :<C-u>FufBuffer!<CR>
+nnoremap <silent> ff :<C-u>FufFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+nnoremap <silent> fm :<C-u>FufMruFile!<CR>
+nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
+nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
+nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
 

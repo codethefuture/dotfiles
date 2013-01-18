@@ -87,11 +87,17 @@ NeoBundle 'https://github.com/miripiruni/CSScomb-for-Vim.git'
 "NeoBundle 'git://github.com/thinca/vim-ft-svn_diff.git'
 
 " Git
-"NeoBundle 'Shougo/git-vim'
-" NeoBundle 'tpope/vim-git'
-NeoBundle 'tpope/vim-fugitive'
-" NeoBundle 'github:mattn/gist-vim.git'
-" NeoBundle 'rstacruz/sparkup.git', {'rtp': 'vim/'}
+" NeoBundle 'Shougo/git-vim'
+" NeoBundle 'git://github.com/mattn/gist-vim.git'
+" NeoBundle 'git://github.com/tpope/vim-git.git'
+NeoBundle 'git://github.com/tpope/vim-fugitive'
+
+" Vim上でgitkのようなことをする
+" NeoBundle 'git://github.com/gregsexton/gitv.git'
+"
+" Gitで管理されているFileの差分
+" NeoBundle 'git://github.com/int3/vim-extradite.git'
+
 "--------------------------------------------------------------------------------------------
 
 
@@ -178,6 +184,16 @@ NeoBundle 'The-NERD-Commenter'
 " " 簡単にoperatorを定義できるようにする
 NeoBundle 'operator-user'
 
+" テキストを直感的に移動、複製
+NeoBundle 'git://github.com/t9md/vim-textmanip.git'
+
+" ヘッダとソースで行き来する
+" :A
+" :AS
+" :AV
+" :AT
+" NeoBundle 'git://github.com/vim-scripts/a.vim.git'
+
 "--------------------------------------------------------------------------------------------
 " Ruby補完機能+ruby
 NeoBundle 'git://github.com/vim-ruby/vim-ruby.git'
@@ -210,7 +226,10 @@ NeoBundle 'kchmck/vim-coffee-script'
 " NeoBundle 'nginx.vim'
 
 " Objective-C
-" NeoBundle 'Bundle 'git://github.com/Rip-Rip/clang_complete.git''
+" NeoBundle 'git://github.com/Rip-Rip/clang_complete.git'
+
+" C/C++
+NeoBundle 'git://github.com/Rip-Rip/clang_complete.git'
 
 "--------------------------------------------------------------------------------------------
 " 外部コマンドを非同期で実行可能に
@@ -225,12 +244,10 @@ endif
 "--------------------------------------------------------------------------------------------
 " 09=other
 
-"NeoBundle 'fugitive'
-"NeoBundle 'extraite'
-"NeoBundle 'closetag'
+" 非同期で make を実行し、その結果を unite.vim へと出力
+" NeoBundle 'git://github.com/Shougo/unite-build.git'
 
 " NeoBundle 'gmarik/github-search.vim'
-" NeoBundle 'gmarik/ide-popup.vim'
 " NeoBundle 'gmarik/sudo-gui.vim'
 
 " " zoom
@@ -258,11 +275,11 @@ endif
 filetype plugin indent on
 
 " Installation check.
-"if neobundle#exists_not_installed_bundles()
-"  echomsg 'Not installed bundles : ' .
-"        \ string(neobundle#get_not_installed_bundle_names())
-"  echomsg 'Please execute ":NeoBundleInstall" command.'
-"  "finish
-"endif
+if neobundle#exists_not_installed_bundles()
+  echomsg 'Not installed bundles : ' .
+        \ string(neobundle#get_not_installed_bundle_names())
+  echomsg 'Please execute ":NeoBundleInstall" command.'
+  finish
+endif
 
 

@@ -354,6 +354,7 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 
 endif
 
+" JavaScript =========================================
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 if !exists('g:neocomplcache_omni_functions')
@@ -363,7 +364,22 @@ endif
 "let g:neocomplcache_omni_functions.javascript = ['nodejscomplete#CompleteJS', 'javascriptcomplete#CompleteJS']
 let g:jscomplete_use = ['dom', 'moz']
 
-" Objective-C
+" C/C++ =========================================
+let g:neocomplcache_force_overwrite_completefunc=1
+
+if !exists("g:neocomplcache_force_omni_patterns")
+    let g:neocomplcache_force_omni_patterns = {}
+endif
+
+" omnifunc が呼び出される場合の正規表現パターンを設定しておく
+let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
+
+" clang_complete 側の設定
+" clang_complete の自動呼び出しは必ず切っておいて下さい
+" これを設定しておかなければ補完がおかしくなります
+let g:clang_complete_auto=0
+
+" Objective-C =========================================
 " if !exists('g:neocomplcache_force_omni_patterns')
 "   let g:neocomplcache_force_omni_patterns = {}
 " endif
@@ -538,10 +554,6 @@ augroup indentguides
 augroup END
 let g:indent_guides_enable_on_vim_startup = 1
 
-"------------------------------------
-" vim-indent-guides.vim
-"------------------------------------
-
 " Tabs
 nnoremap <Space>t t
 nnoremap <Space>T T
@@ -561,4 +573,18 @@ nnoremap <silent> fm :<C-u>FufMruFile!<CR>
 nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
 nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
 nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
+
+"------------------------------------
+" vim-textmanip
+"------------------------------------
+
+" 選択したテキストの移動
+vmap <C-j> <Plug>(Textmanip.move_selection_down)
+vmap <C-k> <Plug>(Textmanip.move_selection_up)
+vmap <C-h> <Plug>(Textmanip.move_selection_left)
+vmap <C-l> <Plug>(Textmanip.move_selection_right)
+
+" 行の複製
+vmap <D-d> <Plug>(Textmanip.duplicate_selection_v)
+nmap <D-d> <Plug>(Textmanip.duplicate_selection_n)
 

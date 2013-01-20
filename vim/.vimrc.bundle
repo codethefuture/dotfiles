@@ -49,13 +49,13 @@ endif
 " 02=JavaScript, CSS, SASS, SCSS, LESS
 "
 " javascript neocomplcache plugin
-"NeoBundle 'git://github.com/teramako/jscomplete-vim.git'
+NeoBundle 'git://github.com/teramako/jscomplete-vim.git'
 " Javascript syntax
-"NeoBundle 'JavaScript-syntax'
+NeoBundle 'JavaScript-syntax'
 " Javascript indent
-"NeoBundle 'pangloss/vim-javascript'
+NeoBundle 'pangloss/vim-javascript'
 " JavaScript をGoogleStyleで整形する
-"NeoBundle 'git://github.com/teppeis/fixclosure.git'
+NeoBundle 'git://github.com/teppeis/fixclosure.git'
 " Zen-coding
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
 

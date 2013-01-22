@@ -150,6 +150,9 @@ esac
 # 指定したコマンド名がなく、ディレクトリ名と一致した場合 cd する
 setopt auto_cd
 
+#ディレクトリ移動後にlsする
+function chpwd() { ls }
+
 # cd でTabを押すとdir list を表示
 setopt auto_pushd
 

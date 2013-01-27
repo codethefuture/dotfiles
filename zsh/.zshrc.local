@@ -1,9 +1,7 @@
-export PATH=$PATH:$HOME/Documents/workspace/gistpad
-
-export GISTY_DIR=$HOME/Documents/workspace/gists
+#export GISTY_DIR=$HOME/Documents/workspace/gists
 #wget http://curl.haxx.se/ca/cacert.pem
-export GISTY_SSL_CA=/usr/local/opt/cert.pem
-export GISTY_SSL_VERIFY="none"
+#export GISTY_SSL_CA=/usr/local/opt/cert.pem
+#export GISTY_SSL_VERIFY="none"
 
 #alias grep='grep --color'
 

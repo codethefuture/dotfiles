@@ -10,6 +10,8 @@ export EDITOR=vim
 alias gvim='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvim "$@"'
 alias vd='env LANG=ja_JP.UTF-8 /Applications/MacVim.app/Contents/MacOS/mvimdiff "$@" "$@"'
 
+alias vi='vim'
+
 # SVN
 # UTF-8.MAC用のパッチ当てた
 #alias svn='/usr/local/bin/svn'

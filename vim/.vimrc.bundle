@@ -110,12 +110,13 @@ NeoBundle 'git://github.com/gregsexton/gitv.git'
 " 04=ColorTheme
 " カラーテーマ
 NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
-" NeoBundle 'molokai'
 " NeoBundle 'nelstrom/vim-mac-classic-theme'
 " NeoBundle 'altercation/vim-colors-solarized'
 " NeoBundle 'gmarik/ingretu'
 " NeoBundle 'git://github.com/jpo/vim-railscasts-theme.git'
 " NeoBundle 'git://github.com/chriskempson/tomorrow-theme.git'
+" NeoBundle 'git://github.com/fugalh/desert.vim.git'
+" NeoBundle 'git://github.com/tomasr/molokai.git'
 
 " if has("gui_running")
   " colorscheme ingretu

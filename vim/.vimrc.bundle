@@ -122,7 +122,7 @@ NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
 " endif
 
 " ステータスライン
-NeoBundle 'git://github.com/Lokaltog/vim-powerline.git'
+NeoBundle 'git://github.com/Lokaltog/powerline.git'
 
 "--------------------------------------------------------------------------------------------
 
@@ -210,9 +210,9 @@ NeoBundle 'operator-user'
 
 "--------------------------------------------------------------------------------------------
 " Ruby補完機能+ruby
-NeoBundle 'git://github.com/vim-ruby/vim-ruby.git'
+"NeoBundle 'git://github.com/vim-ruby/vim-ruby.git'
 " Ruby on Rails
-NeoBundle 'tpope/vim-rails.git'
+"NeoBundle 'tpope/vim-rails.git'
 
 " Coffee-script
 "NeoBundle 'kchmck/vim-coffee-script'

@@ -110,7 +110,8 @@ NeoBundle 'git://github.com/gregsexton/gitv.git'
 "--------------------------------------------------------------------------------------------
 " 04=ColorTheme
 " カラーテーマ
-NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
+" NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
+NeoBundle 'git://github.com/w0ng/vim-hybrid.git'
 " NeoBundle 'nelstrom/vim-mac-classic-theme'
 " NeoBundle 'altercation/vim-colors-solarized'
 " NeoBundle 'gmarik/ingretu'
@@ -165,6 +166,9 @@ NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
 "
 " 移動履歴
 " NeoBundle 'git://thinca/vim-poslist.git'
+
+" 検索移動
+NeoBundle 'git://github.com/goldfeld/vim-seek.git'
 
 "--------------------------------------------------------------------------------------------
 " " ソースコードを追いかけるのに便利

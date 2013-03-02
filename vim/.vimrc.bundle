@@ -279,7 +279,7 @@ endif
 " "NeoBundle 'zoom.vim'
 " "NeoBundle 'line-diff'
 " タブエディタ風にバッファ管理ウィンドウを表示する
-"NeoBundle 'minibufexpl.vim'
+NeoBundle 'minibufexpl.vim'
 
 " " %による対応括弧へのカーソル移動機能を拡張
 " NeoBundle 'matchit.zip'

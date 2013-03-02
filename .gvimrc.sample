@@ -13,7 +13,8 @@ if has('gui_macvim')
   set guioptions+=a
   set guioptions-=T   " メニューなんぞ要らない
 
-  colorscheme jellybeans
+  colorscheme hybrid
+  "colorscheme jellybeans
   "colorscheme Solarized
 
   au GUIEnter * set fullscreen

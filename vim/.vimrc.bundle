@@ -21,12 +21,12 @@ endif
 "--------------------------------------------------------------------------------------------
 " 00=補間
 
-if $SUDO_USER != ''
-else
-  NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-  " neocomplcacheのsinpet補間
-  NeoBundle 'git://github.com/Shougo/neosnippet'
-endif
+" if $SUDO_USER != ''
+" else
+  " NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+  " " neocomplcacheのsinpet補間
+  " NeoBundle 'git://github.com/Shougo/neosnippet'
+" endif
 " 対応する括弧等を補間
 "NeoBundle 'git://github.com/kana/vim-smartinput.git'
 "--------------------------------------------------------------------------------------------
@@ -98,7 +98,7 @@ NeoBundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive'
 
 " Vim上でgitkのようなことをする
-NeoBundle 'git://github.com/gregsexton/gitv.git'
+" NeoBundle 'git://github.com/gregsexton/gitv.git'
 "
 " Gitで管理されているFileの差分
 "NeoBundle 'git://github.com/int3/vim-extradite.git'
@@ -152,7 +152,7 @@ endif
 "--------------------------------------------------------------------------------------------
 " アンドゥ／リドゥの履歴
 " http://uu59.blog103.fc2.com/blog-entry-7.html
-"NeoBundle 'git://github.com/sjl/gundo.vim.git'
+NeoBundle 'git://github.com/sjl/gundo.vim.git'
 
 " YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
 NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
@@ -274,7 +274,7 @@ endif
 " "NeoBundle 'zoom.vim'
 " "NeoBundle 'line-diff'
 " タブエディタ風にバッファ管理ウィンドウを表示する
-"NeoBundle 'minibufexpl.vim'
+NeoBundle 'minibufexpl.vim'
 
 " " %による対応括弧へのカーソル移動機能を拡張
 " NeoBundle 'matchit.zip'

@@ -14,15 +14,20 @@ hi clear CursorLine
 hi CursorLine gui=underline
 highlight CursorLine ctermbg=black guibg=black
 
-let g:solarized_termcolors=256
-
 " erbファイルでHTML5で追加された新要素のシンタックスハイライト・インデントを有効
 autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
 
 " jellybeans
-colorscheme jellybeans
-let g:jellybeans_use_lowcolor_black = 0
+"let g:solarized_termcolors=256
+
+" jellybeans
+" colorscheme jellybeans
+" let g:jellybeans_use_lowcolor_black = 0
 "set listchars=eol:$,tab:>\
+
+" hybrid
+colorscheme hybrid
+let g:hybrid_use_Xresources = 1
 
 " コマンド実行中は再描画しない
 set lazyredraw

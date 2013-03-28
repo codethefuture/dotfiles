@@ -338,7 +338,8 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Enable omni completion. Not required if they are already set elsewhere in .vimrc
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -542,7 +543,7 @@ nmap <F8> :TagbarToggle<CR>
 "------------------------------------
 
 let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 1
+let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 
 augroup indentguides
@@ -551,6 +552,10 @@ augroup indentguides
     autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=235
 augroup END
 let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_color_change_percent=20
+let g:indent_guides_space_guides=1
+au FileType coffee,ruby,javascript IndentGuidesEnable
+nmap <silent><Leader>ig <Plug>IndentGuidesToggle
 
 " Tabs
 nnoremap <Space>t t
@@ -585,4 +590,19 @@ vmap <C-l> <Plug>(Textmanip.move_selection_right)
 " 行の複製
 vmap <D-d> <Plug>(Textmanip.duplicate_selection_v)
 nmap <D-d> <Plug>(Textmanip.duplicate_selection_n)
+
+
+"------------------------------------
+" sass-compile
+"------------------------------------
+""{{{
+"   let g:sass_compile_auto = 1
+"   let g:sass_compile_cdloop = 5
+"   let g:sass_compile_cssdir = ['css', 'stylesheet']
+"   let g:sass_compile_file = ['scss', 'sass']
+"   let g:sass_started_dirs = []
+"   autocmd FileType less,sass  setlocal sw=2 sts=2 ts=2 et
+"   au! BufWritePost * SassCompile
+"}}}
+
 

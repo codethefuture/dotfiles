@@ -65,6 +65,7 @@ NeoBundle 'git://github.com/cakebaker/scss-syntax.vim.git'
 "NeoBundle 'git://github.com/AtsushiM/css-skelton.vim.git'
 "NeoBundle 'git://github.com/skammer/vim-css-color.git'
 "NeoBundle 'git://github.com/groenewege/vim-less.git'
+"NeoBundle 'git://github.com/AtsushiM/sass-compile.vim.git'
 
 " HTML5
 " cd html5.vim && make install
@@ -109,7 +110,8 @@ NeoBundle 'git://github.com/gregsexton/gitv.git'
 "--------------------------------------------------------------------------------------------
 " 04=ColorTheme
 " カラーテーマ
-NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
+" NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
+NeoBundle 'git://github.com/w0ng/vim-hybrid.git'
 " NeoBundle 'nelstrom/vim-mac-classic-theme'
 " NeoBundle 'altercation/vim-colors-solarized'
 " NeoBundle 'gmarik/ingretu'
@@ -165,6 +167,9 @@ NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
 " 移動履歴
 " NeoBundle 'git://thinca/vim-poslist.git'
 
+" 検索移動
+NeoBundle 'git://github.com/goldfeld/vim-seek.git'
+
 "--------------------------------------------------------------------------------------------
 " " ソースコードを追いかけるのに便利
 " NeoBundle 'Source-Explorer-srcexpl.vim'
@@ -216,7 +221,7 @@ NeoBundle 'operator-user'
 "NeoBundle 'tpope/vim-rails.git'
 
 " Coffee-script
-"NeoBundle 'kchmck/vim-coffee-script'
+"NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
 
 " " Java
 " "NeoBundle 'java.vim'
@@ -274,7 +279,7 @@ endif
 " "NeoBundle 'zoom.vim'
 " "NeoBundle 'line-diff'
 " タブエディタ風にバッファ管理ウィンドウを表示する
-"NeoBundle 'minibufexpl.vim'
+NeoBundle 'minibufexpl.vim'
 
 " " %による対応括弧へのカーソル移動機能を拡張
 " NeoBundle 'matchit.zip'

@@ -1,5 +1,5 @@
 [include]
-  path = .gitconfig.local
+  path = ~/.gitconfig.local
 
 [color]
   # colorの設定(以下のコマンドは自動で色つける)

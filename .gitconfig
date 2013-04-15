@@ -21,6 +21,18 @@
   cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   trustExitCode = true
 
+[merge]
+  tool = p4merge
+
+[mergetool]
+  keepBackup = false
+
+[mergetool "p4merge"]
+  path = p4merge
+  keepTemporaries = false
+  trustExitCode = false
+
+
 [alias]
   s = status -sb -uno
   st = status
@@ -73,6 +85,10 @@
   # grep関連
   gr = grep
   gn = grep -n
+  # git svn
+  gsc = svn dcommit
+  gsr = svn rebase
+
   # reset
   cancel = !git commit -a -m 'Temporary commit for cancel' && git reset --hard HEAD~
 

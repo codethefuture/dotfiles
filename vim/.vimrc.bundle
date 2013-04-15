@@ -99,7 +99,7 @@ NeoBundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 NeoBundle 'git://github.com/tpope/vim-fugitive'
 
 " Vim上でgitkのようなことをする
-NeoBundle 'git://github.com/gregsexton/gitv.git'
+" NeoBundle 'git://github.com/gregsexton/gitv.git'
 "
 " Gitで管理されているFileの差分
 "NeoBundle 'git://github.com/int3/vim-extradite.git'
@@ -154,7 +154,7 @@ endif
 "--------------------------------------------------------------------------------------------
 " アンドゥ／リドゥの履歴
 " http://uu59.blog103.fc2.com/blog-entry-7.html
-"NeoBundle 'git://github.com/sjl/gundo.vim.git'
+NeoBundle 'git://github.com/sjl/gundo.vim.git'
 
 " YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
 NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'

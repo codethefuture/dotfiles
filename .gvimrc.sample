@@ -5,7 +5,7 @@
 if has('gui_macvim')
   set showtabline=2 " タブを常に表示
   set imdisable " IMを無効化
-  set transparency=7 " 透明度を指定
+  set transparency=8 " 透明度を指定
   set antialias
   set guifont=Ricty\ for\ Powerline:h14
   set t_Co=256
@@ -17,7 +17,7 @@ if has('gui_macvim')
   "colorscheme jellybeans
   "colorscheme Solarized
 
-  au GUIEnter * set fullscreen
+  "au GUIEnter * set fullscreen
 
   " used when updatetime value set by plugin (100ms)
   let g:cssColorVimDoNotMessMyUpdatetime = 1

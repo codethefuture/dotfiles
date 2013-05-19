@@ -58,6 +58,8 @@ NeoBundle 'pangloss/vim-javascript'
 NeoBundle 'git://github.com/teppeis/fixclosure.git'
 " Zen-coding
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+" Coffee-script
+NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
 
 "CSS
 NeoBundle 'git://github.com/hail2u/vim-css3-syntax.git'
@@ -219,9 +221,6 @@ NeoBundle 'operator-user'
 "NeoBundle 'git://github.com/vim-ruby/vim-ruby.git'
 " Ruby on Rails
 "NeoBundle 'tpope/vim-rails.git'
-
-" Coffee-script
-"NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
 
 " " Java
 " "NeoBundle 'java.vim'

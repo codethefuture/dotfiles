@@ -73,6 +73,9 @@ NeoBundle 'git://github.com/cakebaker/scss-syntax.vim.git'
 " CSS プロパティの並び替え
 NeoBundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
+" slim syntax
+NeoBundle 'git://github.com/slim-template/vim-slim.git'
+
 " Browser Open
 " NeoBundle 'open-browser.vim'
 " NeoBundle 'mkitt/browser-refresh.vim'
@@ -289,6 +292,8 @@ NeoBundle 'minibufexpl.vim'
 " " Jabber
 " NeoBundle 'git://gitorious.org/vim-jabber/vim-jabber.git'
 
+" 常駐化
+NeoBundle 'git://github.com/thinca/vim-singleton.git'
 
 "--------------------------------------------------------------------------------------------
 " plugin and index on!!

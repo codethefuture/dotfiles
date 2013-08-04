@@ -1,0 +1,12 @@
+#tagsファイルがあれば追加する
+--append=yes
+
+#再起的に処理する(-Rと同じ)
+--recurse=yes
+
+#言語に対する対応する拡張子の追加
+#--langmap=PHP:+.inc
+
+#言語に対してタグの作成するものを指定
+#--php-kinds=cfd
+

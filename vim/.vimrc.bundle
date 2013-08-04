@@ -180,6 +180,7 @@ NeoBundle 'git://github.com/goldfeld/vim-seek.git'
 " ソースコード上のメソッド宣言、変数宣言の一覧を表示
 " brew install ctags
 " NeoBundle 'git://github.com/majutsushi/tagbar.git'
+" NeoBundle 'git@github.com:alpaca-tc/alpaca_tags.git'
 " Grep
 " NeoBundle 'grep.vim'
 " Directory Diff

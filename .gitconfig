@@ -21,17 +21,19 @@
 	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 
-[merge]
-  tool = p4merge
+[diff]
+  tool = meld
 
-[mergetool]
-  keepBackup = false
+#[merge]
+#  tool = p4merge
 
-[mergetool "p4merge"]
-  path = p4merge
-  keepTemporaries = false
-  trustExitCode = false
+#[mergetool]
+#  keepBackup = false
 
+#[mergetool "p4merge"]
+#  path = p4merge
+#  keepTemporaries = false
+#  trustExitCode = false
 
 [alias]
   s = status -sb -uno

@@ -154,6 +154,8 @@ endif
 "NeoBundle 'git://github.com/vim-scripts/FuzzyFinder.git'
 "NeoBundle 'git://github.com/vim-scripts/L9.git'
 
+NeoBundle 'git://github.com/kien/ctrlp.vim'
+
 "--------------------------------------------------------------------------------------------
 " アンドゥ／リドゥの履歴
 " http://uu59.blog103.fc2.com/blog-entry-7.html
@@ -220,8 +222,22 @@ NeoBundle 'operator-user'
 "--------------------------------------------------------------------------------------------
 " Ruby補完機能+ruby
 "NeoBundle 'git://github.com/vim-ruby/vim-ruby.git'
+
+NeoBundle 'vim-ruby/vim-ruby', {
+            \ 'autoload' : {
+            \     'filetypes' : ['ruby']
+            \ }}
+NeoBundle 'vim-scripts/ruby-matchit', {
+            \ 'autoload' : {
+            \     'filetypes' : ['ruby']
+            \ }}
+NeoBundle 'Shougo/neocomplcache-rsense', {
+            \ 'autoload' : {
+            \     'filetypes' : ['ruby']
+            \ }}
+
 " Ruby on Rails
-"NeoBundle 'tpope/vim-rails.git'
+NeoBundle 'tpope/vim-rails.git'
 
 " Coffee-script
 "NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
@@ -263,8 +279,16 @@ NeoBundle 'operator-user'
 " 外部コマンドを非同期で実行可能に
 if $SUDO_USER != ''
 else
+  NeoBundle 'Shougo/vimproc', {
+            \ 'build' : {
+            \     'windows' : 'make -f make_mingw64.mak',
+            \     'cygwin' : 'make -f make_cygwin.mak',
+            \     'mac' : 'make -f make_mac.mak',
+            \     'unix' : 'make -f make_unix.mak',
+            \ }}
+
   NeoBundle 'Shougo/vimshell.git'
-  NeoBundle 'Shougo/vimproc'
+
   " Vim上でプログラムを実行。編集中のファイルを簡単に実行できるプラグイン
   NeoBundle 'thinca/vim-quickrun.git'
 endif
@@ -294,6 +318,15 @@ NeoBundle 'minibufexpl.vim'
 
 " 常駐化
 NeoBundle 'git://github.com/thinca/vim-singleton.git'
+
+" コードからそのコンテキストの範囲（python << EOF ～ EOF の間）やその filetype を取得する為のライブラリプラグイン
+" NeoBundle 'git://github.com/Shougo/context_filetype.vim.git'
+
+" 正規表現でマッチできるレベルで、Vimエディタのテキストオブジェクトをつくる
+" NeoBundle 'git://github.com/kana/vim-textobj-user.git'
+
+" カーソル位置のコンテキストから自動的に filetype を切り換える
+" NeoBundle 'git://github.com/osyo-manga/vim-precious.git'
 
 "--------------------------------------------------------------------------------------------
 " plugin and index on!!

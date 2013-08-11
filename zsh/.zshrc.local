@@ -5,3 +5,6 @@
 
 #alias grep='grep --color'
 
+export PATH=$PATH:${HOME}/.cabal/bin
+
+

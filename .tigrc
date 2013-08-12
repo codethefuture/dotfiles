@@ -1,0 +1,9 @@
+bind generic G move-last-line
+
+bind diff ; view-next
+bind diff l scroll-right
+bind diff h scroll-left
+
+bind main G !@hub browse -- commit/%(commit)
+bind diff G !@hub browse -- commit/%(commit)
+

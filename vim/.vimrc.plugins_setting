@@ -331,6 +331,9 @@ inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
 inoremap <expr><C-y>  neocomplcache#close_popup()
 inoremap <expr><C-e>  neocomplcache#cancel_popup()
 
+"ファイル名補完
+inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
+
 " AutoComplPop like behavior.
 "let g:neocomplcache_enable_auto_select = 1
 
@@ -344,8 +347,6 @@ inoremap <expr><C-e>  neocomplcache#cancel_popup()
 " Enable omni completion. Not required if they are already set elsewhere in .vimrc
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
@@ -362,6 +363,7 @@ let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
 endif
 
 " JavaScript =========================================
+"autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 if !exists('g:neocomplcache_omni_functions')
@@ -526,10 +528,21 @@ let g:RefreshRunningBrowserReturnFocus = 0
 nmap U :<C-u>GundoToggle<CR>
 
 "------------------------------------
+" NERDTree.vim
+"------------------------------------
+
+nnoremap <leader>n :NERDTree<CR>
+
+"------------------------------------
 " tagbar.vim
 "------------------------------------
 set tags=~/.tags
-nmap <F8> :TagbarToggle<CR>
+let g:tlist_javascript_settings='javascript;f:function;c:class;m:method'
+
+" TagListを表示
+" representing TagList.
+nnoremap <leader>t :TagbarToggle<CR>
+"nmap <F8> :TagbarToggle<CR>
 
 "------------------------------------
 " taglist
@@ -545,6 +558,7 @@ nmap <F8> :TagbarToggle<CR>
 " let Tlist_GainFocus_On_ToggleOpen = 1
 " let Tlist_Sort_Type = "name"
 " map <silent> <leader>tl :TlistToggle<CR>
+"nnoremap <leader>t :Tlist<CR>
 
 "------------------------------------
 " vim-indent-guides.vim
@@ -680,5 +694,9 @@ endfunction
 "  au FileWritePost,BufWritePost Gemfile AlpacaTagsUpdateBundle
 "  au FileReadPost,BufEnter * AlpacaTagsSet
 "aug END
+
+
+" Ackへのショートカット
+nnoremap <leader>a :Ack
 
 

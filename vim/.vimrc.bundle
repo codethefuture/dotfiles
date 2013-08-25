@@ -40,13 +40,7 @@ endif
 
 " {{{
 
-NeoBundle 'scrooloose/syntastic'
-"NeoBundleLazy 'scrooloose/syntastic', { 'autoload' : {
-"      \ 'filetypes' : [
-"      \     'slim', 'ruby', 'eruby',
-"      \     'javascript', 'html', 'css', 'scss', 'sass'
-"      \   ]
-"      \ }}
+NeoBundleLazy 'scrooloose/syntastic'
 
 " }}}
 
@@ -144,6 +138,7 @@ NeoBundle 'git://github.com/w0ng/vim-hybrid.git'
 " endif
 
 " ステータスライン
+NeoBundle 'git://github.com/itchyny/lightline.vim.git'
 "NeoBundle 'alpaca-tc/alpaca_powertabline'
 "NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
 

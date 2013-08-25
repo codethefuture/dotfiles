@@ -11,4 +11,5 @@
   * slim
 * other
   * git-browse-remote
+  * reek
 

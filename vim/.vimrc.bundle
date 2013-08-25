@@ -62,7 +62,8 @@ NeoBundle 'pangloss/vim-javascript'
 " JavaScript をGoogleStyleで整形する
 NeoBundle 'git://github.com/teppeis/fixclosure.git'
 " Zen-coding
-NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+"NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+NeoBundle 'git://github.com/mattn/emmet-vim.git'
 " Coffee-script
 NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
 " LiveStyle

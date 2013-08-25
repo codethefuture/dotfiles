@@ -552,13 +552,15 @@ autocmd BufRead,BufNewFile *.md  setfiletype mkd
 "------------------------------------
 " syntastic
 "------------------------------------
+
 "{{{
+"
 let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
 let g:syntastic_check_on_save=1 "保存時にはチェック
 let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
 let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
 let g:syntastic_quiet_warnings = 0
-"compiler ruby
+
 let g:syntastic_mode_map = {
   \ 'mode': 'passive',
   \ 'active_filetypes': [''
@@ -581,6 +583,7 @@ au BufWritePost *.rb call RubyLint()
 au BufWritePost *.erb call RubyLint()
 au BufWritePost *.slim call RubyLint()
 au FileType ruby noremap <C-l> :call RubyLint()<CR>
+
 function! RubyLint()
   let result = system( &ft . ' -c ' . bufname(""))
   echo result
@@ -589,7 +592,7 @@ endfunction
 "}}}
 
 "------------------------------------
-" align.vim
+" align
 "------------------------------------
 "{{{
 let g:Align_xstrlen=3

@@ -212,15 +212,6 @@ autocmd BufWritePre * :call <SID>set_fileformat()
 
 autocmd FileType .html set matchpairs+=<:>
 
-" gem install ruby-lint
-au BufWritePost *.rb call RubyLint()
-au FileType ruby noremap <C-l> :call RubyLint()<CR>
-function! RubyLint()
-  let result = system( &ft . ' -c ' . bufname(""))
-  echo result
-endfunction
-
-
 " コマンド実行後の表示状態を維持する
 "function! s:ExecuteKeepView(expr, commandname)
 "  if input("setlocal " + commandname + "?[y/n]") == "y"

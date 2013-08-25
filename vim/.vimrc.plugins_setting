@@ -557,16 +557,35 @@ let g:syntastic_check_on_open=0 "ファイルを開いたときはチェック�
 let g:syntastic_check_on_save=1 "保存時にはチェック
 let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
 let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
-
-compiler ruby
+let g:syntastic_quiet_warnings = 0
+"compiler ruby
 let g:syntastic_mode_map = {
   \ 'mode': 'passive',
-  \ 'active_filetypes': ['ruby', 'javascript', 'html', 'css'],
-  \ 'passive_filetypes': [] }
+  \ 'active_filetypes': [''
+  \    ],
+  \ 'passive_filetypes': [
+  \       'ruby', 'slim', 'eruby',
+  \       'javascript', 'html', 'css', 'scss', 'sass'
+  \    ]
+  \ }
+let g:syntastic_ruby_checkers = ['rubocop']
+noremap <C-s> :<C-u>:SyntasticCheck<cr>
+
 "エラー表示マークを変更
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
+
+" gem install ruby-lint
+au BufWritePost *.rb call RubyLint()
+au BufWritePost *.html.erb call RubyLint()
+au BufWritePost *.html.slim call RubyLint()
+au FileType ruby noremap <C-l> :call RubyLint()<CR>
+function! RubyLint()
+  let result = system( &ft . ' -c ' . bufname(""))
+  echo result
+endfunction
+
 "}}}
 
 "------------------------------------

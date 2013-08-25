@@ -60,9 +60,11 @@ NeoBundle 'JavaScript-syntax'
 " Javascript indent
 NeoBundle 'pangloss/vim-javascript'
 " JavaScript をGoogleStyleで整形する
+" https://github.com/teppeis/fixclosure
 NeoBundle 'git://github.com/teppeis/fixclosure.git'
 " Zen-coding
-NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+"NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+NeoBundle 'git://github.com/mattn/emmet-vim.git'
 " Coffee-script
 NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
 " LiveStyle

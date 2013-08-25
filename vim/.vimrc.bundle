@@ -49,7 +49,7 @@ endif
 " 02=JavaScript, CSS, SASS, SCSS, LESS
 "
 " javascript neocomplcache plugin
-NeoBundle 'git://github.com/teramako/jscomplete-vim.git'
+" NeoBundle 'git://github.com/teramako/jscomplete-vim.git'
 " Javascript syntax
 NeoBundle 'JavaScript-syntax'
 " Javascript indent
@@ -60,6 +60,9 @@ NeoBundle 'git://github.com/teppeis/fixclosure.git'
 NeoBundle 'git://github.com/mattn/zencoding-vim.git'
 " Coffee-script
 NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
+" LiveStyle
+" http://livestyle.emmet.io/
+NeoBundle 'git://github.com/mattn/livestyle-vim.git'
 
 "CSS
 NeoBundle 'git://github.com/hail2u/vim-css3-syntax.git'

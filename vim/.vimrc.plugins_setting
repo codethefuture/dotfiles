@@ -268,8 +268,8 @@ endif
 "-----------------------------------
 " vimfiler.vim
 "------------------------------------
-"vimfiler {{{
 
+"{{{
 "data_directory はramdiskを指定
 if has('win32')
 elseif  has('macunix')
@@ -298,14 +298,59 @@ endfunction
 
 "}}}
 
+"------------------------------------
+" NERDTree
+"------------------------------------
+
+"{{{
+" 隠しファイルを表示
+let g:NERDTreeShowHidden=1
+" ツリーの幅
+let g:NERDTreeWinSize=26
+" カラースキーマを優先
+let g:NERDChristmasTree=0
+" open 後閉じる
+let g:NERDTreeQuitOnOpen=1
+" 表示しないファイル
+let g:NERDTreeIgnore=['\.DS_Store$', '\.clean$', '\.swp$', '\.bak$', '\~$']
+" ステータスライン
+let g:NERDTreeStatusline=' '
+
+" カーソルが外れているときは自動的にnerdtreeを隠す
+function! ExecuteNERDTree()
+  "b:nerdstatus = 1 : NERDTree 表示中
+  "b:nerdstatus = 2 : NERDTree 非表示中
+  " key mappings
+  if !exists('g:nerdstatus')
+    execute 'NERDTree ./'
+    let g:windowWidth = winwidth(winnr())
+    let g:nerdtreebuf = bufnr('')
+    let g:nerdstatus = 1
+  elseif g:nerdstatus == 1
+    execute 'wincmd t'
+    execute 'vertical resize' 0
+    execute 'wincmd p'
+    let g:nerdstatus = 2
+  elseif g:nerdstatus == 2
+    execute 'wincmd t'
+    execute 'vertical resize' g:windowWidth
+    let g:nerdstatus = 1
+  endif
+endfunction
+noremap <C-m> :<C-u>:call ExecuteNERDTree()<cr>
+
+"}}}
+
 "-----------------------------------
 " grep.vim
 "------------------------------------
 
+"{{{
 " :Gb <args> でGrepBufferする
 command! -nargs=1 Gb :GrepBuffer <args>
 " カーソル下の単語をGrepBufferする
 nnoremap <C-g><C-b> :<C-u>GrepBuffer<Space><C-r><C-w><Enter>
+"}}}
 
 "------------------------------------
 " operator, NERD_Commenter コメントPlugin

@@ -147,7 +147,7 @@ else
 endif
 
 " Tree :NERDTree
-" NeoBundle 'The-NERD-tree'
+NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 " ツリー状にファイルやディレクトリの一覧を表示
 " NeoBundle 'vtreeexplorer'
 " NeoBundle 'git://github.com/Shougo/vimfiler.git'

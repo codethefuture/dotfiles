@@ -254,6 +254,16 @@ NeoBundleLazy 'Shougo/neosnippet', {
 NeoBundle 'tpope/vim-rails', { 'autoload' : {
       \ 'filetypes' : ['slim', 'haml', 'ruby', 'eruby'] }}
 
+NeoBundleLazy 'alpaca-tc/alpaca_complete',{
+      \ 'depends' : [ 'tpope/vim-rails'],
+      \ 'build' : {
+      \     'mac' : 'gem install alpaca_complete',
+      \     'unix' : 'gem install alpaca_complete',
+      \ },
+      \ 'autoload' : {
+      \   'filetypes' : ['slim', 'haml', 'ruby', 'eruby']
+      \ }}
+
 "NeoBundle 'vim-ruby/vim-ruby', {
 "            \ 'autoload' : {
 "            \     'filetypes' : ['ruby']
@@ -286,6 +296,7 @@ NeoBundleLazy 'basyura/unite-rails', {
       \   ]
       \ }}
 
+" Railsプロジェクトで,Unite rails_best_practices
 NeoBundleLazy 'alpaca-tc/unite-rails_best_practices', {
       \ 'depends' : 'Shougo/unite.vim',
       \ 'build' : {
@@ -295,6 +306,13 @@ NeoBundleLazy 'alpaca-tc/unite-rails_best_practices', {
       \ 'autoload': {
       \   'unite_sources': 'rails_best_practices'
       \ }}
+
+" rubyのファイルを開きながら、Unite reek
+NeoBundleLazy 'alpaca-tc/unite-reek',{
+      \ 'build' : {
+      \     'mac' :  'gem install reek',
+      \     'unix' : 'gem install reek',
+      \  }}
 
 "NeoBundle 'taka84u9/vim-ref-ri', {
 "      \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
@@ -386,7 +404,7 @@ endif
 " "NeoBundle 'zoom.vim'
 " "NeoBundle 'line-diff'
 " タブエディタ風にバッファ管理ウィンドウを表示する
-NeoBundle 'minibufexpl.vim'
+" NeoBundle 'minibufexpl.vim'
 
 " " %による対応括弧へのカーソル移動機能を拡張
 " NeoBundle 'matchit.zip'

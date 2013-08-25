@@ -255,6 +255,14 @@ aug MyAutoCmd
 aug END
 "}}}
 
+
+"------------------------------------
+" unite-reek, unite-rails_best_practices
+"------------------------------------
+
+" こんな感じに設定
+nnoremap <silent> <C-H><C-R> :<C-u>Unite -no-quit reek<CR>
+nnoremap <silent> <C-H><C-R><C-R> :<C-u>Unite -no-quit rails_best_practices<CR>
 endif
 
 "-----------------------------------

@@ -309,6 +309,14 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
       \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
       \ }}
 
+"NeoBundleLazy 'tsukkee/unite-tag', { 'autoload' : {
+"      \ 'unite_sources' : 'tag'
+"      \ }}
+
+"NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : {
+"      \ 'unite_sources' : ['history/command', 'history/search']
+"      \ }}
+
 " }}}
 
 " " Java

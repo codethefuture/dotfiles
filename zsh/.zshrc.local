@@ -7,4 +7,5 @@
 
 export PATH=$PATH:${HOME}/.cabal/bin
 
+export GOPATH=~/.go
 

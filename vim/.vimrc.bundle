@@ -21,12 +21,12 @@ endif
 "--------------------------------------------------------------------------------------------
 " 00=補間
 
-if $SUDO_USER != ''
-else
-  NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-  " neocomplcacheのsinpet補間
-  NeoBundle 'git://github.com/Shougo/neosnippet'
-endif
+"if $SUDO_USER != ''
+"else
+"  NeoBundle 'git://github.com/Shougo/neocomplcache.git'
+"  " neocomplcacheのsinpet補間
+"  NeoBundle 'git://github.com/Shougo/neosnippet'
+"endif
 " 対応する括弧等を補間
 "NeoBundle 'git://github.com/kana/vim-smartinput.git'
 "--------------------------------------------------------------------------------------------
@@ -37,7 +37,12 @@ endif
 " syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
 "
 " sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
-"NeoBundle 'git://github.com/scrooloose/syntastic.git'
+
+" {{{
+
+NeoBundleLazy 'scrooloose/syntastic'
+
+" }}}
 
 " エラーがある場所をhilight
 "NeoBundle 'errormarker.vim'
@@ -49,17 +54,22 @@ endif
 " 02=JavaScript, CSS, SASS, SCSS, LESS
 "
 " javascript neocomplcache plugin
-NeoBundle 'git://github.com/teramako/jscomplete-vim.git'
+" NeoBundle 'git://github.com/teramako/jscomplete-vim.git'
 " Javascript syntax
 NeoBundle 'JavaScript-syntax'
 " Javascript indent
 NeoBundle 'pangloss/vim-javascript'
 " JavaScript をGoogleStyleで整形する
+" https://github.com/teppeis/fixclosure
 NeoBundle 'git://github.com/teppeis/fixclosure.git'
 " Zen-coding
-NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+"NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+NeoBundle 'git://github.com/mattn/emmet-vim.git'
 " Coffee-script
 NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
+" LiveStyle
+" http://livestyle.emmet.io/
+NeoBundle 'git://github.com/mattn/livestyle-vim.git'
 
 "CSS
 NeoBundle 'git://github.com/hail2u/vim-css3-syntax.git'
@@ -130,7 +140,9 @@ NeoBundle 'git://github.com/w0ng/vim-hybrid.git'
 " endif
 
 " ステータスライン
-NeoBundle 'git://github.com/Lokaltog/powerline.git'
+NeoBundle 'git://github.com/itchyny/lightline.vim.git'
+"NeoBundle 'alpaca-tc/alpaca_powertabline'
+"NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
 
 "--------------------------------------------------------------------------------------------
 
@@ -140,12 +152,10 @@ NeoBundle 'git://github.com/Lokaltog/powerline.git'
 if $SUDO_USER != ''
 else
   NeoBundle 'Shougo/unite.vim.git'
-  " unite-rails
-  " unite-ouline
 endif
 
 " Tree :NERDTree
-" NeoBundle 'The-NERD-tree'
+NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 " ツリー状にファイルやディレクトリの一覧を表示
 " NeoBundle 'vtreeexplorer'
 " NeoBundle 'git://github.com/Shougo/vimfiler.git'
@@ -224,23 +234,114 @@ NeoBundle 'operator-user'
 
 "--------------------------------------------------------------------------------------------
 " Ruby補完機能+ruby
-"NeoBundle 'git://github.com/vim-ruby/vim-ruby.git'
 
-NeoBundle 'vim-ruby/vim-ruby', {
-            \ 'autoload' : {
-            \     'filetypes' : ['ruby']
-            \ }}
-NeoBundle 'vim-scripts/ruby-matchit', {
-            \ 'autoload' : {
-            \     'filetypes' : ['ruby']
-            \ }}
-NeoBundle 'Shougo/neocomplcache-rsense', {
-            \ 'autoload' : {
-            \     'filetypes' : ['ruby']
-            \ }}
+" {{{
 
-" Ruby on Rails
-NeoBundle 'tpope/vim-rails.git'
+if has("lua")
+  NeoBundleLazy 'Shougo/neocomplete', { 'autoload' : {
+        \   'insert' : 1,
+        \ }}
+else
+  NeoBundleLazy 'Shougo/neocomplete', {
+        \ 'autoload' : {
+        \   'insert' : 1,
+        \ },
+        \ }
+endif
+
+NeoBundleLazy 'Shougo/neosnippet', {
+      \ 'autoload' : {
+      \   'commands' : ['NeoSnippetEdit', 'NeoSnippetSource'],
+      \   'filetypes' : 'snippet',
+      \   'insert' : 1,
+      \   'unite_sources' : ['snippet', 'neosnippet/user', 'neosnippet/runtime'],
+      \ }}
+
+NeoBundle 'tpope/vim-rails', { 'autoload' : {
+      \ 'filetypes' : ['slim', 'haml', 'ruby', 'eruby'] }}
+
+NeoBundleLazy 'alpaca-tc/alpaca_complete',{
+      \ 'depends' : [ 'tpope/vim-rails'],
+      \ 'build' : {
+      \     'mac' : 'gem install alpaca_complete',
+      \     'unix' : 'gem install alpaca_complete',
+      \ }}
+
+"NeoBundle 'vim-ruby/vim-ruby', {
+"            \ 'autoload' : {
+"            \     'filetypes' : ['ruby']
+"            \ }}
+
+"NeoBundle 'Shougo/neocomplcache-rsense', {
+"            \ 'autoload' : {
+"            \     'filetypes' : ['ruby']
+"            \ }}
+
+NeoBundleLazy 'alpaca-tc/vim-endwise.git', {
+      \ 'autoload' : {
+      \   'insert' : 1,
+      \ }}
+
+NeoBundleLazy 'edsono/vim-matchit', { 'autoload' : {
+      \ 'filetypes': 'ruby',
+      \ 'mappings' : ['nx', '%'] }}
+
+NeoBundleLazy 'basyura/unite-rails', {
+      \ 'depends' : 'Shougo/unite.vim',
+      \ 'autoload' : {
+      \   'unite_sources' : [
+      \     'rails/bundle', 'rails/bundled_gem', 'rails/config',
+      \     'rails/controller', 'rails/db', 'rails/destroy', 'rails/features',
+      \     'rails/gem', 'rails/gemfile', 'rails/generate', 'rails/git', 'rails/helper',
+      \     'rails/heroku', 'rails/initializer', 'rails/javascript', 'rails/lib', 'rails/log',
+      \     'rails/mailer', 'rails/model', 'rails/rake', 'rails/route', 'rails/schema', 'rails/spec',
+      \     'rails/stylesheet', 'rails/view'
+      \   ]
+      \ }}
+
+" Railsプロジェクトで,Unite rails_best_practices
+NeoBundleLazy 'alpaca-tc/unite-rails_best_practices', {
+      \ 'depends' : 'Shougo/unite.vim',
+      \ 'build' : {
+      \    'mac': 'gem install rails_best_practices',
+      \    'unix': 'gem install rails_best_practices',
+      \ },
+      \ 'autoload': {
+      \   'unite_sources': 'rails_best_practices'
+      \ }}
+
+" rubyのファイルを開きながら、Unite reek
+NeoBundleLazy 'alpaca-tc/unite-reek',{
+      \ 'build' : {
+      \     'mac' :  'gem install reek',
+      \     'unix' : 'gem install reek',
+      \  }}
+
+"NeoBundle 'taka84u9/vim-ref-ri', {
+"      \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
+"      \ 'autoload': { 'filetypes': g:my.ft.ruby_files } }
+
+NeoBundleLazy 'alpaca-tc/neorspec.vim', {
+      \ 'depends' : ['alpaca-tc/vim-rails', 'tpope/vim-dispatch'],
+      \ 'autoload' : {
+      \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
+      \ }}
+
+NeoBundleLazy 'alpaca-tc/alpaca_tags', {
+      \ 'depends': 'Shougo/vimproc',
+      \ 'autoload' : {
+      \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
+      \ }}
+
+"NeoBundleLazy 'tsukkee/unite-tag', { 'autoload' : {
+"      \ 'unite_sources' : 'tag'
+"      \ }}
+
+"NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : {
+"      \ 'unite_sources' : ['history/command', 'history/search']
+"      \ }}
+
+" }}}
 
 " " Java
 " "NeoBundle 'java.vim'
@@ -306,7 +407,7 @@ endif
 " "NeoBundle 'zoom.vim'
 " "NeoBundle 'line-diff'
 " タブエディタ風にバッファ管理ウィンドウを表示する
-NeoBundle 'minibufexpl.vim'
+" NeoBundle 'minibufexpl.vim'
 
 " " %による対応括弧へのカーソル移動機能を拡張
 " NeoBundle 'matchit.zip'

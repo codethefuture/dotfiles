@@ -38,22 +38,52 @@ endif
 "------------------------------------
 " minibufexplorer
 "------------------------------------
-let g:miniBufExplMapWindowNavVim=1 "hjklで移動
-let g:miniBufExplSplitBelow=0  " Put new window above
-let g:miniBufExplMapWindowNavArrows=1
-let g:miniBufExplMapCTabSwitchBufs=1
-let g:miniBufExplModSelTarget=1
-let g:miniBufExplSplitToEdge=1
-let g:miniBufExplMaxSize = 10
-
-":TmでMiniBufExplorerの表示トグル
-command! Mt :TMiniBufExplorer
+"let g:miniBufExplMapWindowNavVim=1 "hjklで移動
+"let g:miniBufExplSplitBelow=0  " Put new window above
+"let g:miniBufExplMapWindowNavArrows=1
+"let g:miniBufExplMapCTabSwitchBufs=1
+"let g:miniBufExplModSelTarget=1
+"let g:miniBufExplSplitToEdge=1
+"let g:miniBufExplMaxSize = 10
+"
+"":TmでMiniBufExplorerの表示トグル
+"command! Mt :TMiniBufExplorer
 
 "------------------------------------
-" rails.vim
+" vim-rails
 "------------------------------------
+
+""{{{
+"有効化
+"let g:rails_devalut_database = 'mysql'
+let g:rails_default_file='config/database.yml'
 let g:rails_level = 4
-let g:rails_devalut_database = 'mysql'
+let g:rails_mappings=1
+let g:rails_modelines=0
+" let g:rails_some_option = 1
+" let g:rails_statusline = 1
+" let g:rails_subversion=0
+" let g:rails_syntax = 1
+" let g:rails_url='http://localhost:3000'
+" let g:rails_ctags_arguments='--languages=-javascript'
+" let g:rails_ctags_arguments = ''
+function! SetUpRailsSetting()
+  nnoremap <buffer><Space>r :R<CR>
+  nnoremap <buffer><Space>a :A<CR>
+  nnoremap <buffer><Space>m :Rmodel<Space>
+  nnoremap <buffer><Space>c :Rcontroller<Space>
+  nnoremap <buffer><Space>v :Rview<Space>
+  nnoremap <buffer><Space>p :Rpreview<CR>
+endfunction
+
+aug MyAutoCmd
+  au User Rails call SetUpRailsSetting()
+aug END
+
+aug RailsDictSetting
+  au!
+aug END
+"}}}
 
 "------------------------------------
 " html5.vim
@@ -73,20 +103,20 @@ let g:html5_aria_attributes_complete = 0
 "------------------------------------
 nnoremap ,m :w <BAR> !lessc % > %:t:r.css<CR><space>
 
-"------------------------------------
-" TwitVim.vim
-"------------------------------------
-let twitvim_count = 40
-nnoremap ,tp :<C-u>PosttoTwitter<CR>
-nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
-nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
-nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
-nnoremap ,tn :<C-u>NextTwitter<CR>
-
-autocmd FileType twitvim call s:twitvim_my_settings()
-function! s:twitvim_my_settings()
-  set nowrap
-endfunction
+""------------------------------------
+"" TwitVim.vim
+""------------------------------------
+"let twitvim_count = 40
+"nnoremap ,tp :<C-u>PosttoTwitter<CR>
+"nnoremap ,tf :<C-u>FriendsTwitter<CR><C-w>j
+"nnoremap ,tu :<C-u>UserTwitter<CR><C-w>j
+"nnoremap ,tr :<C-u>RepliesTwitter<CR><C-w>j
+"nnoremap ,tn :<C-u>NextTwitter<CR>
+"
+"autocmd FileType twitvim call s:twitvim_my_settings()
+"function! s:twitvim_my_settings()
+"  set nowrap
+"endfunction
 
 "------------------------------------
 " unite.vim
@@ -102,7 +132,16 @@ nnoremap <silent> <C-b> :<C-u>Unite buffer file_mru<CR>
 inoremap <silent> <C-b> <ESC>:<C-u>Unite buffer file_mru<CR>
 
 " For ack.
-if executable('ack-grep')
+if executable('ag')
+  " Use ag in unite grep source.
+  let g:unite_source_grep_command = 'ag'
+  let g:unite_source_grep_default_opts =
+        \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+        \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+  let g:unite_source_grep_recursive_opt = ''
+  let g:unite_source_grep_max_candidates = 200
+elseif executable('ack-grep')
+  " For ack.
   let g:unite_source_grep_command = 'ack-grep'
   let g:unite_source_grep_default_opts = '--no-heading --no-color -a'
   let g:unite_source_grep_recursive_opt = ''
@@ -157,6 +196,9 @@ function! s:unite_my_settings()
   " ESCキーを2回押すと終了する
   nmap <silent><buffer> <ESC><ESC> q
   imap <silent><buffer> <ESC><ESC> <ESC>q
+  " Ctrl-cキーを押すと終了する
+  nmap <silent><buffer> <C-c> q
+  imap <silent><buffer> <C-c> <C-c>q
 endfunction
 
 
@@ -184,13 +226,50 @@ call unite#custom_action('file', 'diff', diff_action)
 
 unlet diff_action
 
+"------------------------------------
+" Unite-rails.vim
+"------------------------------------
+"noremap :rc :<C-u>Unite rails/controller<CR>
+"noremap :rm :<C-u>Unite rails/model<CR>
+"noremap :rv :<C-u>Unite rails/view<CR>
+"noremap :rh :<C-u>Unite rails/helper<CR>
+
+"{{{
+function! UniteRailsSetting()
+  nnoremap <buffer><C-H><C-H><C-H>  :<C-U>Unite rails/view<CR>
+  nnoremap <buffer><C-H><C-H>       :<C-U>Unite rails/model<CR>
+  nnoremap <buffer><C-H>            :<C-U>Unite rails/controller<CR>
+
+  nnoremap <buffer><C-H>c           :<C-U>Unite rails/config<CR>
+  nnoremap <buffer><C-H>s           :<C-U>Unite rails/spec<CR>
+  nnoremap <buffer><C-H>m           :<C-U>Unite rails/db -input=migrate<CR>
+  nnoremap <buffer><C-H>l           :<C-U>Unite rails/lib<CR>
+  nnoremap <buffer><expr><C-H>g     ':e '.b:rails_root.'/Gemfile<CR>'
+  nnoremap <buffer><expr><C-H>r     ':e '.b:rails_root.'/config/routes.rb<CR>'
+  nnoremap <buffer><expr><C-H>se    ':e '.b:rails_root.'/db/seeds.rb<CR>'
+  nnoremap <buffer><C-H>ra          :<C-U>Unite rails/rake<CR>
+  nnoremap <buffer><C-H>h           :<C-U>Unite rails/heroku<CR>
+endfunction
+aug MyAutoCmd
+  au User Rails call UniteRailsSetting()
+aug END
+"}}}
+
+
+"------------------------------------
+" unite-reek, unite-rails_best_practices
+"------------------------------------
+
+" こんな感じに設定
+nnoremap <silent> <C-H><C-R> :<C-u>Unite -no-quit reek<CR>
+nnoremap <silent> <C-H><C-R><C-R> :<C-u>Unite -no-quit rails_best_practices<CR>
 endif
 
 "-----------------------------------
 " vimfiler.vim
 "------------------------------------
-"vimfiler {{{
 
+"{{{
 "data_directory はramdiskを指定
 if has('win32')
 elseif  has('macunix')
@@ -219,14 +298,59 @@ endfunction
 
 "}}}
 
+"------------------------------------
+" NERDTree
+"------------------------------------
+
+"{{{
+" 隠しファイルを表示
+let g:NERDTreeShowHidden=1
+" ツリーの幅
+let g:NERDTreeWinSize=26
+" カラースキーマを優先
+let g:NERDChristmasTree=0
+" open 後閉じる
+let g:NERDTreeQuitOnOpen=1
+" 表示しないファイル
+let g:NERDTreeIgnore=['\.DS_Store$', '\.clean$', '\.swp$', '\.bak$', '\~$']
+" ステータスライン
+let g:NERDTreeStatusline=' '
+
+" カーソルが外れているときは自動的にnerdtreeを隠す
+function! ExecuteNERDTree()
+  "b:nerdstatus = 1 : NERDTree 表示中
+  "b:nerdstatus = 2 : NERDTree 非表示中
+  " key mappings
+  if !exists('g:nerdstatus')
+    execute 'NERDTree ./'
+    let g:windowWidth = winwidth(winnr())
+    let g:nerdtreebuf = bufnr('')
+    let g:nerdstatus = 1
+  elseif g:nerdstatus == 1
+    execute 'wincmd t'
+    execute 'vertical resize' 0
+    execute 'wincmd p'
+    let g:nerdstatus = 2
+  elseif g:nerdstatus == 2
+    execute 'wincmd t'
+    execute 'vertical resize' g:windowWidth
+    let g:nerdstatus = 1
+  endif
+endfunction
+noremap <C-m> :<C-u>:call ExecuteNERDTree()<cr>
+
+"}}}
+
 "-----------------------------------
 " grep.vim
 "------------------------------------
 
+"{{{
 " :Gb <args> でGrepBufferする
 command! -nargs=1 Gb :GrepBuffer <args>
 " カーソル下の単語をGrepBufferする
 nnoremap <C-g><C-b> :<C-u>GrepBuffer<Space><C-r><C-w><Enter>
+"}}}
 
 "------------------------------------
 " operator, NERD_Commenter コメントPlugin
@@ -276,227 +400,220 @@ call s:setCommentOperator('[Operator]b',       'alignBoth')
 call s:setCommentOperator('[Operator]n',       'nested')
 call s:setCommentOperator('[Operator]u',       'uncomment')
 
+
 "------------------------------------
-" 補間 neocomplcache
+" 補間 neocomplete
 "------------------------------------
 
-if $SUDO_USER != ''
-else
-
-" Disable AutoComplPop. Comment out this line if AutoComplPop is not installed.
+"Note: This option must set it in .vimrc(_vimrc).  NOT IN .gvimrc(_gvimrc)!
+" Disable AutoComplPop.
 let g:acp_enableAtStartup = 0
-" Launches neocomplcache automatically on vim startup.
-let g:neocomplcache_enable_at_startup = 1
+" Use neocomplete.
+let g:neocomplete#enable_at_startup = 1
 " Use smartcase.
-let g:neocomplcache_enable_smart_case = 1
-" Use camel case completion.
-let g:neocomplcache_enable_camel_case_completion = 1
-" Use underscore completion.
-let g:neocomplcache_enable_underbar_completion = 1
-" Sets minimum char length of syntax keyword.
-let g:neocomplcache_min_syntax_length = 3
-" buffer file name pattern that locks neocomplcache. e.g. ku.vim or fuzzyfinder
-let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+let g:neocomplete#enable_smart_case = 1
+" Set minimum syntax keyword length.
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#lock_buffer_name_pattern = '\*ku\*'
 
-" Define file-type dependent dictionaries.
-let g:neocomplcache_dictionary_filetype_lists = {
+" Define dictionary.
+let g:neocomplete#sources#dictionary#dictionaries = {
     \ 'default' : '',
     \ 'vimshell' : $HOME.'/.vimshell_hist',
     \ 'scheme' : $HOME.'/.gosh_completions'
     \ }
 
-" Define keyword, for minor languages
-if !exists('g:neocomplcache_keyword_patterns')
-  let g:neocomplcache_keyword_patterns = {}
+" キャッシュしないファイル名
+let g:neocomplete#sources#buffer#disabled_pattern = '\.log\|\.log\.\|\.jax'
+" 自動補完を行わないバッファ名
+let g:neocomplete#lock_buffer_name_pattern = '\.log\|\.log\.\|.*quickrun.*\|.jax'
+
+" Define keyword.
+if !exists('g:neocomplete#keyword_patterns')
+  let g:neocomplete#keyword_patterns = {}
 endif
-let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+let g:neocomplete#keyword_patterns['default'] = '\h\w*'
 
 " Plugin key-mappings.
-imap <C-k>     <Plug>(neocomplcache_snippets_expand)
-smap <C-k>     <Plug>(neocomplcache_snippets_expand)
-inoremap <expr><C-g>     neocomplcache#undo_completion()
-inoremap <expr><C-l>     neocomplcache#complete_common_string()
+inoremap <expr><C-g>     neocomplete#undo_completion()
+inoremap <expr><C-l>     neocomplete#complete_common_string()
 
-" SuperTab like snippets behavior.
-imap <expr><TAB> neocomplcache#sources#snippets_complete#expandable() ? "\<Plug>(neocomplcache_snippets_expand)" : pumvisible() ? "\<C-n>" : "\<TAB>"
+" " Recommended key-mappings.
+" " <CR>: close popup and save indent.
+" inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+" function! s:my_cr_function()
+  " return neocomplete#smart_close_popup() . "\<CR>"
+  " " For no inserting <CR> key.
+  " "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+" endfunction
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " <C-h>, <BS>: close popup and delete backword char.
+" inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+" inoremap <expr><C-y>  neocomplete#close_popup()
+" inoremap <expr><C-e>  neocomplete#cancel_popup()
+" " Close popup by <Space>.
+" "inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
-" Recommended key-mappings.
-" <CR>: close popup and save indent.
-inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplcache#close_popup()
-inoremap <expr><C-e>  neocomplcache#cancel_popup()
-
-"ファイル名補完
-inoremap <expr><C-x><C-f> neocomplcache#manual_filename_complete()
+" " For cursor moving in insert mode(Not recommended)
+" "inoremap <expr><Left>  neocomplete#close_popup() . "\<Left>"
+" "inoremap <expr><Right> neocomplete#close_popup() . "\<Right>"
+" "inoremap <expr><Up>    neocomplete#close_popup() . "\<Up>"
+" "inoremap <expr><Down>  neocomplete#close_popup() . "\<Down>"
+" Or set this.
+"let g:neocomplete#enable_cursor_hold_i = 1
+" Or set this.
+"let g:neocomplete#enable_insert_char_pre = 1
 
 " AutoComplPop like behavior.
-"let g:neocomplcache_enable_auto_select = 1
+let g:neocomplete#enable_auto_select = 1
 
 " Shell like behavior(not recommended).
-"set completeopt+=longest
-"let g:neocomplcache_enable_auto_select = 1
-"let g:neocomplcache_disable_auto_complete = 1
-"inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<TAB>"
-"inoremap <expr><CR>  neocomplcache#smart_close_popup() . "\<CR>"
+set completeopt+=longest
+let g:neocomplete#enable_auto_select = 1
+let g:neocomplete#disable_auto_complete = 1
+inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
 
-" Enable omni completion. Not required if they are already set elsewhere in .vimrc
+" Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
-" Enable heavy omni completion, which require computational power and may stall the vim.
-if !exists('g:neocomplcache_omni_patterns')
-  let g:neocomplcache_omni_patterns = {}
+" Enable heavy omni completion.
+if !exists('g:neocomplete#sources#omni#input_patterns')
+  let g:neocomplete#sources#omni#input_patterns = {}
 endif
-let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\w*\|\h\w*::'
-"autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
-let g:neocomplcache_omni_patterns.c = '\%(\.\|->\)\h\w*'
-let g:neocomplcache_omni_patterns.cpp = '\h\w*\%(\.\|->\)\h\w*\|\h\w*::'
+let g:neocomplete#sources#omni#input_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+"let g:neocomplete#sources#omni#input_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+"let g:neocomplete#sources#omni#input_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
-endif
-
-" JavaScript =========================================
-"autocmd FileType javascript setlocal omnifunc=jscomplete#CompleteJS
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-
-if !exists('g:neocomplcache_omni_functions')
-    let g:neocomplcache_omni_functions = {}
-endif
-
-"let g:neocomplcache_omni_functions.javascript = ['nodejscomplete#CompleteJS', 'javascriptcomplete#CompleteJS']
-let g:jscomplete_use = ['dom', 'moz']
-
-" C/C++ =========================================
-let g:neocomplcache_force_overwrite_completefunc=1
-
-if !exists("g:neocomplcache_force_omni_patterns")
-    let g:neocomplcache_force_omni_patterns = {}
-endif
-
-" omnifunc が呼び出される場合の正規表現パターンを設定しておく
-let g:neocomplcache_force_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|::'
-
-" clang_complete 側の設定
-" clang_complete の自動呼び出しは必ず切っておいて下さい
-" これを設定しておかなければ補完がおかしくなります
-let g:clang_complete_auto=0
-
-" Objective-C =========================================
-" if !exists('g:neocomplcache_force_omni_patterns')
-"   let g:neocomplcache_force_omni_patterns = {}
-" endif
-" let g:neocomplcache_force_overwrite_completefunc = 1
-" let g:neocomplcache_force_omni_patterns.c =
-"   \ '[^.[:digit:] *\t]\%(\.\|->\)'
-" let g:neocomplcache_force_omni_patterns.cpp =
-"   \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-" let g:neocomplcache_force_omni_patterns.objc =
-"   \ '[^.[:digit:] *\t]\%(\.\|->\)'
-" let g:neocomplcache_force_omni_patterns.objcpp =
-"   \ '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
-" let g:clang_complete_auto = 0
-" let g:clang_auto_select = 0
-
-
+" For perlomni.vim setting.
+" https://github.com/c9s/perlomni.vim
+let g:neocomplete#sources#omni#input_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 
 "------------------------------------
-" snippets
+" neosnippet
 "------------------------------------
 
-let g:neosnippet#snippets_directory='~/.vim/snipmate-snippets/snippets'
+" neosnippet "{{{
 
-" let g:snippets_dir = $HOME.'/.vim/snippets'
+" snippetを保存するディレクトリを設定してください
+let s:default_snippet = neobundle#get_neobundle_dir() . '/neosnippet/autoload/neosnippet/snippets' " 本体に入っているsnippet
+let s:my_snippet = '~/.vim/snipmate-snippets/snippets' " 自分のsnippet
+let g:neosnippet#snippets_directory = s:my_snippet
+let g:neosnippet#snippets_directory = s:default_snippet . ',' . s:my_snippet
+imap <silent><C-F>                <Plug>(neosnippet_expand_or_jump)
+inoremap <silent><C-U>            <ESC>:<C-U>Unite snippet<CR>
+nnoremap <silent><Space>e         :<C-U>NeoSnippetEdit -split<CR>
+smap <silent><C-F>                <Plug>(neosnippet_expand_or_jump)
+" xmap <silent>o                    <Plug>(neosnippet_register_oneshot_snippet)
+"}}}
 
-imap <C-k>     <Plug>(neosnippet_expand_or_jump)
-smap <C-k>     <Plug>(neosnippet_expand_or_jump)
-
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable() ? "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
-" Define dictionary.
-let g:neocomplcache_dictionary_filetype_lists = {
-  \ 'default' : '',
-  \ 'ruby' : $HOME.'/.vim/snippets/ruby.snippets',
-  \ 'erb' : $HOME.'/.vim/snippets/erb.snippets',
-  \ 'html' : $HOME.'/.vim/snippets/html.snippets',
-  \ 'css' : $HOME.'/.vim/snippets/css.snippets',
-  \ 'javascript' : $HOME.'/.vim/snippets/javascript.snippets'
-  \ }
-
-" snipMate再読み込み。xxx.snippetを開いているときに:call SnipMateReload()すればＯＫ
-function! SnipMateReload()
-    if &ft == 'snippet'
-        let ft = substitute(expand('%'), '.snippets', '', '')
-        if has_key(g:did_ft, ft)
-            unlet g:did_ft[ft]
-        endif
-        silent! call GetSnippets(g:snippets_dir, ft)
-    endif
-endfunction
+"" Define dictionary.
+"let g:neocomplcache_dictionary_filetype_lists = {
+"  \ 'default' : '',
+"  \ 'ruby' : $HOME.'/.vim/snippets/ruby.snippets',
+"  \ 'erb' : $HOME.'/.vim/snippets/erb.snippets',
+"  \ 'html' : $HOME.'/.vim/snippets/html.snippets',
+"  \ 'css' : $HOME.'/.vim/snippets/css.snippets',
+"  \ 'javascript' : $HOME.'/.vim/snippets/javascript.snippets'
+"  \ }
 
 "------------------------------------
 " surround.vim
 "------------------------------------
+"{{{
 " s, ssで選択範囲を指定文字でくくる
 nmap s <Plug>Ysurround
 nmap ss <Plug>Yssurround
+"}}}
+
+"------------------------------------
+" endwise.vim
+"------------------------------------
+
+"{{{
+let g:endwise_no_mappings=1
+"}}}
 
 "------------------------------------
 " mkd.vim
 " Markdown-syntax
 "------------------------------------
+"{{{
 autocmd BufRead,BufNewFile *.mkd setfiletype mkd
 autocmd BufRead,BufNewFile *.md  setfiletype mkd
+"}}}
 
 "------------------------------------
 " syntastic
 "------------------------------------
+
+"{{{
+"
 let g:syntastic_check_on_open=0 "ファイルを開いたときはチェックしない
 let g:syntastic_check_on_save=1 "保存時にはチェック
 let g:syntastic_auto_loc_list=1 "エラーがあったら自動でロケーションリストを開く
 let g:syntastic_loc_list_height=6 "エラー表示ウィンドウの高さ
+let g:syntastic_quiet_warnings = 0
 
-compiler ruby
 let g:syntastic_mode_map = {
   \ 'mode': 'passive',
-  \ 'active_filetypes': ['ruby', 'javascript', 'html', 'css'],
-  \ 'passive_filetypes': [] }
+  \ 'active_filetypes': [''
+  \    ],
+  \ 'passive_filetypes': [
+  \       'ruby', 'slim', 'eruby',
+  \       'javascript', 'html', 'css', 'scss', 'sass'
+  \    ]
+  \ }
+let g:syntastic_ruby_checkers = ['rubocop']
+noremap <C-s> :<C-u>:SyntasticCheck<CR>
+
 "エラー表示マークを変更
 let g:syntastic_enable_signs=1
 let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 
+" gem install ruby-lint
+au BufWritePost *.rb call RubyLint()
+au BufWritePost *.erb call RubyLint()
+au BufWritePost *.slim call RubyLint()
+au FileType ruby noremap <C-l> :call RubyLint()<CR>
+
+function! RubyLint()
+  let result = system( &ft . ' -c ' . bufname(""))
+  echo result
+endfunction
+
+"}}}
+
 "------------------------------------
-" align.vim
+" align
 "------------------------------------
+"{{{
 let g:Align_xstrlen=3
+"}}}
 
 "------------------------------------
 " open-browser.vim
 "------------------------------------
+"{{{
 let g:netrw_nogx = 1 " disable netrw's gx mapping.
 nmap gx <Plug>(openbrowser-smart-search)
 vmap gx <Plug>(openbrowser-smart-search)
+"}}}
 
 "------------------------------------
 " browserrefresh.vim
 "------------------------------------
+"{{{
 let g:RefreshRunningBrowserDefault = 'chrome'
 let g:RefreshRunningBrowserReturnFocus = 0
-
+"}}}
 
 "------------------------------------
 " browserrefresh.vim
@@ -525,24 +642,42 @@ let g:RefreshRunningBrowserReturnFocus = 0
 " gundo.vim
 "------------------------------------
 
+"{{{
 nmap U :<C-u>GundoToggle<CR>
-
-"------------------------------------
-" NERDTree.vim
-"------------------------------------
-
-nnoremap <leader>n :NERDTree<CR>
+"}}}
 
 "------------------------------------
 " tagbar.vim
 "------------------------------------
+"{{{
 set tags=~/.tags
-let g:tlist_javascript_settings='javascript;f:function;c:class;m:method'
+nmap <F8> :TagbarToggle<CR>
 
-" TagListを表示
-" representing TagList.
-nnoremap <leader>t :TagbarToggle<CR>
-"nmap <F8> :TagbarToggle<CR>
+let g:alpaca_update_tags_config = {
+      \ '_' : '-R --sort=yes',
+      \ 'js' : '--languages=+js',
+      \ '-js' : '--languages=-js,JavaScript',
+      \ 'vim' : '--languages=+Vim,vim',
+      \ '-vim' : '--languages=-Vim,vim',
+      \ '-style': '--languages=-css,sass,scss,js,JavaScript,html',
+      \ 'scss' : '--languages=+scss --languages=-css,sass',
+      \ 'sass' : '--languages=+sass --languages=-css,scss',
+      \ 'css' : '--languages=+css',
+      \ 'java' : '--languages=+java $JAVA_HOME/src',
+      \ 'ruby': '--languages=+Ruby',
+      \ 'coffee': '--languages=+coffee',
+      \ '-coffee': '--languages=-coffee',
+      \ 'bundle': '--languages=+Ruby --languages=-css,sass,scss,js,JavaScript,coffee',
+      \ }
+
+"aug AlpacaUpdateTags
+"  au!
+"  au FileWritePost,BufWritePost * AlpacaTagsUpdate -style
+"  " bundleのオプションは自動で追加して実行します。
+"  au FileWritePost,BufWritePost Gemfile AlpacaTagsUpdateBundle
+"  au FileReadPost,BufEnter * AlpacaTagsSet
+"aug END
+"}}}
 
 "------------------------------------
 " taglist
@@ -564,6 +699,7 @@ nnoremap <leader>t :TagbarToggle<CR>
 " vim-indent-guides.vim
 "------------------------------------
 
+"{{{
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
@@ -598,11 +734,13 @@ nnoremap <silent> fm :<C-u>FufMruFile!<CR>
 nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
 nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
 nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
+"}}}
 
 "------------------------------------
 " vim-textmanip
 "------------------------------------
 
+"{{{
 " 選択したテキストの移動
 vmap <C-j> <Plug>(Textmanip.move_selection_down)
 vmap <C-k> <Plug>(Textmanip.move_selection_up)
@@ -612,6 +750,7 @@ vmap <C-l> <Plug>(Textmanip.move_selection_right)
 " 行の複製
 vmap <D-d> <Plug>(Textmanip.duplicate_selection_v)
 nmap <D-d> <Plug>(Textmanip.duplicate_selection_n)
+"}}}
 
 
 "------------------------------------
@@ -632,6 +771,7 @@ nmap <D-d> <Plug>(Textmanip.duplicate_selection_n)
 " gitv.git
 "------------------------------------
 
+"{{{
 autocmd FileType gitv call s:my_gitv_settings()
 function! s:my_gitv_settings()
   setlocal iskeyword+=/,-,.
@@ -655,48 +795,6 @@ function! s:toggle_git_folding()
     setlocal foldenable!
   endif
 endfunction
-
-
-
-"------------------------------------
-" gitv.git
-"------------------------------------
-
-"NeoBundleLazy 'taichouchou2/alpaca_update_tags', {
-"      \ 'depends': 'Shougo/vimproc',
-"      \ 'autoload' : {
-"      \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsUpdateBundle']
-"      \ }}
-"
-"" ~/.ctagsにctagsの設定ファイルを設置します。現在無い人は、このディレクトリ内の.ctagsをコピーしてください。
-"" 適切なlanguageは`ctags --list-maps=all`で見つけてください。人によりますので。
-"let g:alpaca_update_tags_config = {
-"      \ '_' : '-R --sort=yes',
-"      \ 'js' : '--languages=+js',
-"      \ '-js' : '--languages=-js,JavaScript',
-"      \ 'vim' : '--languages=+Vim,vim',
-"      \ '-vim' : '--languages=-Vim,vim',
-"      \ '-style': '--languages=-css,sass,scss,js,JavaScript,html',
-"      \ 'scss' : '--languages=+scss --languages=-css,sass',
-"      \ 'sass' : '--languages=+sass --languages=-css,scss',
-"      \ 'css' : '--languages=+css',
-"      \ 'java' : '--languages=+java $JAVA_HOME/src',
-"      \ 'ruby': '--languages=+Ruby',
-"      \ 'coffee': '--languages=+coffee',
-"      \ '-coffee': '--languages=-coffee',
-"      \ 'bundle': '--languages=+Ruby --languages=-css,sass,scss,js,JavaScript,coffee',
-"      \ }
-
-"aug AlpacaUpdateTags
-"  au!
-"  au FileWritePost,BufWritePost * AlpacaTagsUpdate -style
-"  " bundleのオプションは自動で追加して実行します。
-"  au FileWritePost,BufWritePost Gemfile AlpacaTagsUpdateBundle
-"  au FileReadPost,BufEnter * AlpacaTagsSet
-"aug END
-
-
-" Ackへのショートカット
-nnoremap <leader>a :Ack
+"}}}
 
 

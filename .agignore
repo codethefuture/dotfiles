@@ -1,0 +1,10 @@
+*~
+*.swp
+*.bak
+*.old
+tmp
+old
+.vim/bundle
+.git
+.svn
+

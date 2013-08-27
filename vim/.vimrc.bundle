@@ -330,11 +330,11 @@ NeoBundleLazy 'alpaca-tc/neorspec.vim', {
       \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
       \ }}
 
-"NeoBundleLazy 'alpaca-tc/alpaca_tags', {
-"      \ 'depends': 'Shougo/vimproc',
-"      \ 'autoload' : {
-"      \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
-"      \ }}
+NeoBundleLazy 'alpaca-tc/alpaca_tags', {
+      \ 'depends': 'Shougo/vimproc',
+      \ 'autoload' : {
+      \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
+      \ }}
 
 "NeoBundleLazy 'tsukkee/unite-tag', { 'autoload' : {
 "      \ 'unite_sources' : 'tag'
@@ -420,8 +420,8 @@ endif
 " " Jabber
 " NeoBundle 'git://gitorious.org/vim-jabber/vim-jabber.git'
 
-" 常駐化
-NeoBundle 'git://github.com/thinca/vim-singleton.git'
+"" 常駐化
+"NeoBundle 'git://github.com/thinca/vim-singleton.git'
 
 " コードからそのコンテキストの範囲（python << EOF ～ EOF の間）やその filetype を取得する為のライブラリプラグイン
 " NeoBundle 'git://github.com/Shougo/context_filetype.vim.git'

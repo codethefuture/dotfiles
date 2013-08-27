@@ -119,6 +119,9 @@ NeoBundle 'git://github.com/tpope/vim-fugitive'
 " Gitで管理されているFileの差分
 "NeoBundle 'git://github.com/int3/vim-extradite.git'
 
+" Git diff
+NeoBundle 'git://github.com/airblade/vim-gitgutter.git'
+
 "--------------------------------------------------------------------------------------------
 
 
@@ -327,11 +330,11 @@ NeoBundleLazy 'alpaca-tc/neorspec.vim', {
       \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
       \ }}
 
-NeoBundleLazy 'alpaca-tc/alpaca_tags', {
-      \ 'depends': 'Shougo/vimproc',
-      \ 'autoload' : {
-      \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
-      \ }}
+"NeoBundleLazy 'alpaca-tc/alpaca_tags', {
+"      \ 'depends': 'Shougo/vimproc',
+"      \ 'autoload' : {
+"      \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
+"      \ }}
 
 "NeoBundleLazy 'tsukkee/unite-tag', { 'autoload' : {
 "      \ 'unite_sources' : 'tag'

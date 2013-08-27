@@ -579,9 +579,9 @@ let g:syntastic_error_symbol='✗'
 let g:syntastic_warning_symbol='⚠'
 
 " gem install ruby-lint
-au BufWritePost *.rb call RubyLint()
-au BufWritePost *.erb call RubyLint()
-au BufWritePost *.slim call RubyLint()
+"au BufWritePost *.rb call RubyLint()
+"au BufWritePost *.erb call RubyLint()
+"au BufWritePost *.slim call RubyLint()
 au FileType ruby noremap <C-l> :call RubyLint()<CR>
 
 function! RubyLint()
@@ -693,6 +693,7 @@ let g:alpaca_update_tags_config = {
 " let Tlist_GainFocus_On_ToggleOpen = 1
 " let Tlist_Sort_Type = "name"
 " map <silent> <leader>tl :TlistToggle<CR>
+"nnoremap <leader>t :Tlist<CR>
 
 "------------------------------------
 " vim-indent-guides.vim

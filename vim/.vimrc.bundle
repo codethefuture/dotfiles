@@ -1,244 +1,109 @@
+"--------------------------------------------------------------------------------------------
+
+" initialize "{{{
+
+let g:my = {}
+" OS
+let s:is_windows = has('win32') || has('win64')
+let s:is_mac     = has('mac')
+let s:is_unix    = has('unix')
+
+" config
+let g:my.conf = {
+      \ "initialize" : 1,
+      \ }
+
+let g:my.dir = {
+      \ 'neobundle'   : expand('~/.vim/.bundle'),
+      \ 'unite'     : expand('~/.vim.trash/unite'),
+      \ 'vimref'    : expand('~/.vim.trash/vim-ref'),
+      \ 'vimfiler'  : expand('~/.vim.trash/vimfiler'),
+      \ 'vimshell'  : expand('~/.vim.trash/vimshell'),
+      \ }
+"      \ 'ctrlp'     : expand('~/.vim.trash/ctrlp'),
+"      \ 'memolist'  : expand('~/.memolist'),
+"      \ 'snippets'  : expand('~/.vim/snippet'),
+"      \ 'swap_dir'  : expand('~/.vim.trash/vimswap'),
+"      \ 'trash_dir' : expand('~/.vim.trash/'),
+"      \ 'neocomplete' : expand('~/.vim.trash/neocomplete'),
+"      \ 'vim-session' : expand('~/.vim.trash/vimsession'),
+
+let g:my.ft = {
+      \ "html_files"      : ['eruby', 'html', 'php', 'haml'],
+      \ "ruby_files"      : ['ruby', 'Gemfile', 'haml', 'eruby', 'yaml'],
+      \ "js_files"        : ['javascript', 'coffeescript', 'node', 'json', 'typescript'],
+      \ "python_files"    : ['python'],
+      \ "scala_files"     : ['scala'],
+      \ "sh_files"        : ['sh'],
+      \ "php_files"       : ['php', 'phtml'],
+      \ "c_files"         : ["c", "cpp"],
+      \ "style_files"     : ['css', 'scss', 'sass'],
+      \ "markup_files"    : ['html', 'haml', 'erb', 'php', 'xhtml'],
+      \ "english_files"   : ['markdown', 'help', 'text'],
+      \ "program_files"   : ['ruby', 'php', 'python', 'eruby', 'vim', 'javascript', 'coffee', 'scala', 'java', 'go', 'cpp', 'haml'],
+      \ "ignore_patterns" : ['vimfiler', 'unite'],
+      \ }
+
+"if g:my.conf.initialize
+"  let dir_list = []
+"  call map(copy(g:my.dir), 'add(dir_list, v:val)')
+"  call alpaca#initialize#directory(dir_list)
+"endif
+
+" }}}
+
+"--------------------------------------------------------------------------------------------
+
 set nocompatible               " be iMproved
 filetype plugin indent off     " required!
-
 if has('vim_starting')
   set runtimepath+=~/.vim/bundle/neobundle.vim/
   call neobundle#rc(expand('~/.vim/bundle/'))
 endif
-"NeoNeoBundle 'Shougo/neobundle.vim'
 
 "--------------------------------------------------------------------------------------------
-"index
-" 00=補間
-" 01=check plugin exc...
-" 02=JavaScript, CSS, SASS, SCSS, LESS
-" 03=SVN, Git
-" 04=ColorTheme
-" 09=other
-" 上記以降未整理
-"--------------------------------------------------------------------------------------------
-
-"--------------------------------------------------------------------------------------------
-" 00=補間
-
-"if $SUDO_USER != ''
-"else
-"  NeoBundle 'git://github.com/Shougo/neocomplcache.git'
-"  " neocomplcacheのsinpet補間
-"  NeoBundle 'git://github.com/Shougo/neosnippet'
-"endif
-" 対応する括弧等を補間
-"NeoBundle 'git://github.com/kana/vim-smartinput.git'
-"--------------------------------------------------------------------------------------------
-
-"--------------------------------------------------------------------------------------------
-" 01=check plugin exc...
-"
-" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
-"
-" sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
-
 " {{{
 
-NeoBundleLazy 'scrooloose/syntastic'
+"NeoBundleFetch 'Shougo/neobundle.vim'
+
+" 外部コマンドを非同期で実行可能に
+if $SUDO_USER != ''
+else
+NeoBundle 'Shougo/vimproc', {
+          \ 'build' : {
+          \     'windows' : 'make -f make_mingw64.mak',
+          \     'cygwin' : 'make -f make_cygwin.mak',
+          \     'mac' : 'make -f make_mac.mak',
+          \     'unix' : 'make -f make_unix.mak',
+          \ }}
+endif
+
+NeoBundleLazy 'Shougo/vimshell', {
+      \ 'autoload' : {
+      \   'commands' : [{
+      \     'name' : 'VimShell',
+      \     'complete' : 'customlist,vimshell#complete'},
+      \     'VimShellExecute', 'VimShellInteractive', 'VimShellTerminal', 'VimShellPop', 'VimShellBufferDir'],
+      \   'mappings' : ['<Plug>(vimshell_switch)']
+      \ }}
+
+NeoBundle 'Shougo/unite.vim'
+"NeoBundleLazy 'Shougo/unite.vim', {
+"      \ 'autoload' : {
+"      \   'commands' : [ {
+"      \     'name' : 'Unite',
+"      \     'complete' : 'customlist,unite#complete_source'},
+"      \     'UniteBookmarkAdd', 'UniteClose', 'UniteResume',
+"      \     'UniteWithBufferDir', 'UniteWithCurrentDir', 'UniteWithCursorWord',
+"      \     'UniteWithInput', 'UniteWithInputDirectory']
+"      \ }}
 
 " }}}
 
-" エラーがある場所をhilight
-"NeoBundle 'errormarker.vim'
 
 "--------------------------------------------------------------------------------------------
 
-
-"--------------------------------------------------------------------------------------------
-" 02=JavaScript, CSS, SASS, SCSS, LESS
-"
-" javascript neocomplcache plugin
-" NeoBundle 'git://github.com/teramako/jscomplete-vim.git'
-" Javascript syntax
-NeoBundle 'JavaScript-syntax'
-" Javascript indent
-NeoBundle 'pangloss/vim-javascript'
-" JavaScript をGoogleStyleで整形する
-" https://github.com/teppeis/fixclosure
-NeoBundle 'git://github.com/teppeis/fixclosure.git'
-" Zen-coding
-"NeoBundle 'git://github.com/mattn/zencoding-vim.git'
-NeoBundle 'git://github.com/mattn/emmet-vim.git'
-" Coffee-script
-NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
-" LiveStyle
-" http://livestyle.emmet.io/
-NeoBundle 'git://github.com/mattn/livestyle-vim.git'
-
-"CSS
-NeoBundle 'git://github.com/hail2u/vim-css3-syntax.git'
-NeoBundle 'git://github.com/cakebaker/scss-syntax.vim.git'
-"NeoBundle 'git://github.com/AtsushiM/css-skelton.vim.git'
-"NeoBundle 'git://github.com/skammer/vim-css-color.git'
-"NeoBundle 'git://github.com/groenewege/vim-less.git'
-"NeoBundle 'git://github.com/AtsushiM/sass-compile.vim.git'
-
-" HTML5
-" cd html5.vim && make install
- NeoBundle 'git://github.com/othree/html5.vim.git'
-" CSS プロパティの並び替え
-NeoBundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
-
-" slim syntax
-NeoBundle 'git://github.com/slim-template/vim-slim.git'
-
-" Browser Open
-" NeoBundle 'open-browser.vim'
-" NeoBundle 'mkitt/browser-refresh.vim'
-" com! ONRRB :au! BufWritePost <buffer> :RRB
-" com! NORRB :au! BufWritePost <buffer>
-
-" nodejs
-" NeoBundle 'git://github.com/myhere/vim-nodejs-complete.git'
-
-"--------------------------------------------------------------------------------------------
-
-
-"--------------------------------------------------------------------------------------------
-" 03=SVN, Git
-" SVN
-" NeoBundle 'svn-diff.vim'
-" http://d.hatena.ne.jp/thinca/20100218/1266485042
-"NeoBundle 'git://github.com/thinca/vim-ft-svn_diff.git'
-
-" Git
-" NeoBundle 'Shougo/git-vim'
-" NeoBundle 'git://github.com/mattn/gist-vim.git'
-" NeoBundle 'git://github.com/tpope/vim-git.git'
-NeoBundle 'git://github.com/tpope/vim-fugitive'
-
-" Vim上でgitkのようなことをする
-" NeoBundle 'git://github.com/gregsexton/gitv.git'
-"
-" Gitで管理されているFileの差分
-"NeoBundle 'git://github.com/int3/vim-extradite.git'
-
-" Git diff
-NeoBundle 'git://github.com/airblade/vim-gitgutter.git'
-
-"--------------------------------------------------------------------------------------------
-
-
-"--------------------------------------------------------------------------------------------
-" 04=ColorTheme
-" カラーテーマ
-" NeoBundle 'git://github.com/nanotech/jellybeans.vim.git'
-NeoBundle 'git://github.com/w0ng/vim-hybrid.git'
-" NeoBundle 'nelstrom/vim-mac-classic-theme'
-" NeoBundle 'altercation/vim-colors-solarized'
-" NeoBundle 'gmarik/ingretu'
-" NeoBundle 'git://github.com/jpo/vim-railscasts-theme.git'
-" NeoBundle 'git://github.com/chriskempson/tomorrow-theme.git'
-" NeoBundle 'git://github.com/fugalh/desert.vim.git'
-" NeoBundle 'git://github.com/tomasr/molokai.git'
-
-" if has("gui_running")
-  " colorscheme ingretu
-" endif
-
-" ステータスライン
-NeoBundle 'git://github.com/itchyny/lightline.vim.git'
-"NeoBundle 'alpaca-tc/alpaca_powertabline'
-"NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
-
-"--------------------------------------------------------------------------------------------
-
-"--------------------------------------------------------------------------------------------
-" ファイラー
-" バッファやファイルなど様々な入力ソースを検索しファイルを開いたりディレクトリ移動したりyankしたり
-if $SUDO_USER != ''
-else
-  NeoBundle 'Shougo/unite.vim.git'
-endif
-
-" Tree :NERDTree
-NeoBundle 'git://github.com/scrooloose/nerdtree.git'
-" ツリー状にファイルやディレクトリの一覧を表示
-" NeoBundle 'vtreeexplorer'
-" NeoBundle 'git://github.com/Shougo/vimfiler.git'
-" NeoBundle 'git://github.com/spolu/dwm.vim.git'
-
-"NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
-"NeoBundle 'https://bitbucket.org/ns9tks/vim-l9'
-"NeoBundle 'git://github.com/vim-scripts/FuzzyFinder.git'
-"NeoBundle 'git://github.com/vim-scripts/L9.git'
-
-NeoBundle 'git://github.com/kien/ctrlp.vim'
-
-"--------------------------------------------------------------------------------------------
-" アンドゥ／リドゥの履歴
-" http://uu59.blog103.fc2.com/blog-entry-7.html
-NeoBundle 'git://github.com/sjl/gundo.vim.git'
-
-" YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
-NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
-
-" クリップボードにヤンクする
-"NeoBundle 'git://github.com/vim-scripts/yanktmp.vim.git'
-" CUI版Vimからクリップボードを有効にする
-"NeoBundle 'git://github.com/kana/vim-fakeclip.git'
-"
-" 移動履歴
-" NeoBundle 'git://thinca/vim-poslist.git'
-
-" 検索移動
-NeoBundle 'git://github.com/goldfeld/vim-seek.git'
-
-"--------------------------------------------------------------------------------------------
-" " ソースコードを追いかけるのに便利
-" NeoBundle 'Source-Explorer-srcexpl.vim'
-" " マニュアルなどを見る :Unite ref/...
-" NeoBundle 'thinca/vim-ref'
-" ソースコード上のメソッド宣言、変数宣言の一覧を表示
-" brew install ctags
-NeoBundle 'git://github.com/majutsushi/tagbar.git'
-"NeoBundle 'git://github.com/alpaca-tc/alpaca_tags.git'
-" Grep
-" NeoBundle 'grep.vim'
-" Directory Diff
-" NeoBundle 'git://github.com/vim-scripts/DirDiff.vim.git'
-
-
-"--------------------------------------------------------------------------------------------
-" マルチバイト対応の整形
-NeoBundle 'h1mesuke/vim-alignta'
-" テキスト整形
-NeoBundle 'Align'
-" インデント
-NeoBundle 'IndentAnything'
-" インデントを見やすく
-NeoBundle 'git://github.com/nathanaelkane/vim-indent-guides.git'
-
-" " シングルクォートで囲まれたテキストをダブるクォートで囲むように変換
-" " テキストを括弧で囲む／削除する
-" NeoBundle 'tpope/vim-surround'
-
-" " ビジュアルモードや行単位でコメントアウトしたりコメントをハズしたり
-NeoBundle 'The-NERD-Commenter'
-"NeoBundle 'scrooloose/nerdcommenter.git'
-" 簡単にoperatorを定義できるようにする
-NeoBundle 'operator-user'
-
-" テキストを直感的に移動、複製
-"NeoBundle 'git://github.com/t9md/vim-textmanip.git'
-
-" ヘッダとソースで行き来する
-" :A
-" :AS
-" :AV
-" :AT
-"NeoBundle 'git://github.com/vim-scripts/a.vim.git'
-
-"--------------------------------------------------------------------------------------------
-" Ruby補完機能+ruby
-
-" {{{
+" neocomplete " {{{
 
 if has("lua")
   NeoBundleLazy 'Shougo/neocomplete', { 'autoload' : {
@@ -260,75 +125,67 @@ NeoBundleLazy 'Shougo/neosnippet', {
       \   'unite_sources' : ['snippet', 'neosnippet/user', 'neosnippet/runtime'],
       \ }}
 
-NeoBundle 'tpope/vim-rails', { 'autoload' : {
-      \ 'filetypes' : ['slim', 'haml', 'ruby', 'eruby'] }}
+if has("ruby")
+  NeoBundle 'tpope/vim-rails', { 'autoload' : {
+        \ 'filetypes' : ['slim', 'haml', 'ruby', 'eruby'] }}
 
-NeoBundleLazy 'alpaca-tc/alpaca_complete',{
-      \ 'depends' : [ 'tpope/vim-rails'],
-      \ 'build' : {
-      \     'mac' : 'gem install alpaca_complete',
-      \     'unix' : 'gem install alpaca_complete',
-      \ }}
+  NeoBundleLazy 'alpaca-tc/alpaca_complete',{
+        \ 'depends' : [ 'tpope/vim-rails'],
+        \ 'build' : {
+        \     'mac' : 'gem install alpaca_complete',
+        \     'unix' : 'gem install alpaca_complete',
+        \ }}
 
-"NeoBundle 'vim-ruby/vim-ruby', {
-"            \ 'autoload' : {
-"            \     'filetypes' : ['ruby']
-"            \ }}
+  "NeoBundle 'vim-ruby/vim-ruby', {
+  "            \ 'autoload' : {
+  "            \     'filetypes' : ['ruby']
+  "            \ }}
 
-"NeoBundle 'Shougo/neocomplcache-rsense', {
-"            \ 'autoload' : {
-"            \     'filetypes' : ['ruby']
-"            \ }}
+  "NeoBundle 'Shougo/neocomplcache-rsense', {
+  "            \ 'autoload' : {
+  "            \     'filetypes' : ['ruby']
+  "            \ }}
+
+  " Railsプロジェクトで,Unite rails_best_practices
+  NeoBundleLazy 'alpaca-tc/unite-rails_best_practices', {
+        \ 'depends' : 'Shougo/unite.vim',
+        \ 'build' : {
+        \    'mac': 'gem install rails_best_practices',
+        \    'unix': 'gem install rails_best_practices',
+        \ },
+        \ 'autoload': {
+        \   'unite_sources': 'rails_best_practices'
+        \ }}
+  NeoBundleLazy 'basyura/unite-rails'
+
+  "NeoBundleLazy 'alpaca-tc/neorspec.vim', {
+  "      \ 'depends' : ['alpaca-tc/vim-rails', 'tpope/vim-dispatch'],
+  "      \ 'autoload' : {
+  "      \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
+  "      \ }}
+
+  " rubyのファイルを開きながら、Unite reek
+  NeoBundleLazy 'alpaca-tc/unite-reek',{
+        \ 'build' : {
+        \     'mac' :  'gem install reek',
+        \     'unix' : 'gem install reek',
+        \  }}
+
+endif
 
 NeoBundleLazy 'alpaca-tc/vim-endwise.git', {
       \ 'autoload' : {
       \   'insert' : 1,
       \ }}
 
+" %による対応括弧へのカーソル移動機能を拡張
 NeoBundleLazy 'edsono/vim-matchit', { 'autoload' : {
       \ 'filetypes': 'ruby',
       \ 'mappings' : ['nx', '%'] }}
 
-NeoBundleLazy 'basyura/unite-rails', {
-      \ 'depends' : 'Shougo/unite.vim',
-      \ 'autoload' : {
-      \   'unite_sources' : [
-      \     'rails/bundle', 'rails/bundled_gem', 'rails/config',
-      \     'rails/controller', 'rails/db', 'rails/destroy', 'rails/features',
-      \     'rails/gem', 'rails/gemfile', 'rails/generate', 'rails/git', 'rails/helper',
-      \     'rails/heroku', 'rails/initializer', 'rails/javascript', 'rails/lib', 'rails/log',
-      \     'rails/mailer', 'rails/model', 'rails/rake', 'rails/route', 'rails/schema', 'rails/spec',
-      \     'rails/stylesheet', 'rails/view'
-      \   ]
-      \ }}
-
-" Railsプロジェクトで,Unite rails_best_practices
-NeoBundleLazy 'alpaca-tc/unite-rails_best_practices', {
-      \ 'depends' : 'Shougo/unite.vim',
-      \ 'build' : {
-      \    'mac': 'gem install rails_best_practices',
-      \    'unix': 'gem install rails_best_practices',
-      \ },
-      \ 'autoload': {
-      \   'unite_sources': 'rails_best_practices'
-      \ }}
-
-" rubyのファイルを開きながら、Unite reek
-NeoBundleLazy 'alpaca-tc/unite-reek',{
-      \ 'build' : {
-      \     'mac' :  'gem install reek',
-      \     'unix' : 'gem install reek',
-      \  }}
-
 "NeoBundle 'taka84u9/vim-ref-ri', {
 "      \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
 "      \ 'autoload': { 'filetypes': g:my.ft.ruby_files } }
-
-NeoBundleLazy 'alpaca-tc/neorspec.vim', {
-      \ 'depends' : ['alpaca-tc/vim-rails', 'tpope/vim-dispatch'],
-      \ 'autoload' : {
-      \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
-      \ }}
 
 NeoBundleLazy 'alpaca-tc/alpaca_tags', {
       \ 'depends': 'Shougo/vimproc',
@@ -344,13 +201,72 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
 "      \ 'unite_sources' : ['history/command', 'history/search']
 "      \ }}
 
+" 対応する括弧等を補間
+"NeoBundle 'git://github.com/kana/vim-smartinput.git'
+
 " }}}
 
-" " Java
-" "NeoBundle 'java.vim'
+"--------------------------------------------------------------------------------------------
 
-" " XMLとかHTMLとかの編集機能を強化する
-" NeoBundle 'xmledit'
+" syntax checking plugins exist for eruby, haml, html, javascript, php, python, ruby and sass.
+" vim-quickrun " {{{
+
+" Vim上でプログラムを実行。編集中のファイルを簡単に実行できるプラグイン
+NeoBundleLazy 'thinca/vim-quickrun', { 'autoload' : {
+      \   'mappings' : [['nxo', '<Plug>(quickrun)']],
+      \   'commands' : 'QuickRun' }}
+
+" sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
+NeoBundleLazy 'scrooloose/syntastic', { 'autoload': {
+      \ 'build' : {
+      \   'mac' : join(['brew install tidy', 'brew install csslint', 'gem install sass', 'npm install -g jslint', 'gem install rubocop'], ' && ')
+      \ },
+      \ 'filetypes' : g:my.ft.program_files }}
+
+" エラーがある場所をhilight
+"NeoBundleLazy 'errormarker.vim'
+
+" }}}
+
+
+"--------------------------------------------------------------------------------------------
+" 02=JavaScript, CSS, SASS, SCSS, LESS
+" vim-quickrun " {{{
+
+" javascript neocomplcache plugin
+" NeoBundle 'git://github.com/teramako/jscomplete-vim.git'
+" Javascript syntax
+NeoBundle 'JavaScript-syntax'
+" Javascript indent
+NeoBundle 'pangloss/vim-javascript'
+" JavaScript をGoogleStyleで整形する
+" https://github.com/teppeis/fixclosure
+NeoBundle 'git://github.com/teppeis/fixclosure.git'
+" Zen-coding
+"NeoBundle 'git://github.com/mattn/zencoding-vim.git'
+NeoBundle 'git://github.com/mattn/emmet-vim.git'
+" Coffee-script
+"NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
+" LiveStyle
+" http://livestyle.emmet.io/
+"NeoBundle 'git://github.com/mattn/livestyle-vim.git'
+
+"CSS
+NeoBundle 'git://github.com/hail2u/vim-css3-syntax.git'
+NeoBundle 'git://github.com/cakebaker/scss-syntax.vim.git'
+"NeoBundle 'git://github.com/AtsushiM/css-skelton.vim.git'
+"NeoBundle 'git://github.com/skammer/vim-css-color.git'
+"NeoBundle 'git://github.com/groenewege/vim-less.git'
+"NeoBundle 'git://github.com/AtsushiM/sass-compile.vim.git'
+
+" HTML5
+" cd html5.vim && make install
+ NeoBundle 'git://github.com/othree/html5.vim.git'
+" CSS プロパティの並び替え
+NeoBundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+
+" slim syntax
+NeoBundle 'git://github.com/slim-template/vim-slim.git'
 
 " "JSX
 " "NeoBundle 'git://github.com/jsx/jsx.vim.git'
@@ -362,6 +278,158 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
 
 " ActionScript
 "NeoBundle 'git://github.com/endel/actionscript.vim.git'
+
+" Browser Open
+" NeoBundle 'open-browser.vim'
+" NeoBundle 'mkitt/browser-refresh.vim'
+" com! ONRRB :au! BufWritePost <buffer> :RRB
+" com! NORRB :au! BufWritePost <buffer>
+
+" nodejs
+" NeoBundle 'git://github.com/myhere/vim-nodejs-complete.git'
+" NeoBundle 'git://github.com/moll/vim-node.git'
+" NeoBundle 'git://github.com/Powpow-Shen/doctorjs.git'
+
+" }}}
+
+"--------------------------------------------------------------------------------------------
+" Git " {{{
+
+" NeoBundle 'Shougo/git-vim'
+" NeoBundle 'git://github.com/mattn/gist-vim.git'
+" NeoBundle 'git://github.com/tpope/vim-git.git'
+NeoBundle 'git://github.com/tpope/vim-fugitive'
+
+" Vim上でgitkのようなことをする
+" NeoBundle 'git://github.com/gregsexton/gitv.git'
+
+" Gitで管理されているFileの差分
+"NeoBundle 'git://github.com/int3/vim-extradite.git'
+
+" Git diff
+NeoBundle 'git://github.com/airblade/vim-gitgutter.git'
+
+" }}}
+
+"--------------------------------------------------------------------------------------------
+" 04=ColorTheme
+" カラーテーマ
+NeoBundle 'git://github.com/w0ng/vim-hybrid.git'
+
+" ステータスライン
+NeoBundle 'git://github.com/itchyny/lightline.vim.git'
+
+if has('python')
+"NeoBundle 'alpaca-tc/alpaca_powertabline'
+"NeoBundle 'Lokaltog/powerline', {'rtp' : 'powerline/bindings/vim'}
+endif
+
+"--------------------------------------------------------------------------------------------
+" ファイラー
+" バッファやファイルなど様々な入力ソースを検索しファイルを開いたりディレクトリ移動したりyankしたり
+
+" {{{
+" Tree :NERDTree
+NeoBundle 'git://github.com/scrooloose/nerdtree.git'
+"NeoBundle 'git://github.com/Shougo/vimfiler.git'
+"NeoBundle 'git://github.com/spolu/dwm.vim.git'
+"NeoBundle 'https://bitbucket.org/ns9tks/vim-fuzzyfinder'
+"NeoBundle 'https://bitbucket.org/ns9tks/vim-l9'
+"NeoBundle 'git://github.com/vim-scripts/FuzzyFinder.git'
+"NeoBundle 'git://github.com/vim-scripts/L9.git'
+"NeoBundle 'git://github.com/kien/ctrlp.vim'
+" }}}
+
+"--------------------------------------------------------------------------------------------
+" utility " {{{
+" アンドゥ／リドゥの履歴
+" http://uu59.blog103.fc2.com/blog-entry-7.html
+NeoBundle 'git://github.com/sjl/gundo.vim.git'
+
+" YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
+NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
+
+" クリップボードにヤンクする
+"NeoBundle 'git://github.com/vim-scripts/yanktmp.vim.git'
+" CUI版Vimからクリップボードを有効にする
+"NeoBundle 'git://github.com/kana/vim-fakeclip.git'
+"
+" 移動履歴
+" NeoBundle 'git://thinca/vim-poslist.git'
+
+" 検索移動
+NeoBundle 'git://github.com/goldfeld/vim-seek.git'
+
+" " ソースコードを追いかけるのに便利
+" NeoBundle 'Source-Explorer-srcexpl.vim'
+" ソースコード上のメソッド宣言、変数宣言の一覧を表示
+" brew install ctags
+NeoBundle 'git://github.com/majutsushi/tagbar.git'
+" }}}
+
+"--------------------------------------------------------------------------------------------
+" {{{
+
+" マルチバイト対応の整形
+NeoBundleLazy 'h1mesuke/vim-alignta', {
+      \ 'autoload' : {
+      \   'unite_sources' : 'alignta',
+      \   'commands' : ['Align']
+      \ }}
+" テキスト整形
+NeoBundleLazy 'junegunn/vim-easy-align', { 'autoload': {
+      \ 'commands' : ['EasyAlign'] }}
+
+" インデント
+NeoBundle 'IndentAnything'
+if has("conceal")
+  NeoBundleLazy 'Yggdroot/indentLine', { 'autoload' : {
+        \   'commands' : ["IndentLinesReset", "IndentLinesToggle"],
+        \   'filetypes': g:my.ft.program_files,
+        \ }}
+else
+  NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
+        \ 'autoload': {
+        \   'commands': ['IndentGuidesEnable', 'IndentGuidesToggle'],
+        \   'filetypes': g:my.ft.program_files,
+        \ }}
+endif
+
+" " シングルクォートで囲まれたテキストをダブるクォートで囲むように変換
+" " テキストを括弧で囲む／削除する
+" NeoBundle 'tpope/vim-surround'
+
+" " ビジュアルモードや行単位でコメントアウトしたりコメントをハズしたり
+NeoBundleLazy 'tomtom/tcomment_vim', { 'autoload' : {
+      \ 'commands' : ['TComment', 'TCommentAs', 'TCommentMaybeInline'] }}
+" 簡単にoperatorを定義できるようにする
+NeoBundleLazy 'kana/vim-operator-user'
+NeoBundleLazy 'kana/vim-operator-replace', {
+      \ 'depends' : 'vim-operator-user',
+      \ 'autoload' : {
+      \   'mappings' : [
+      \     ['nx', '<Plug>(operator-replace)']]
+      \ }}
+
+" 正規表現でマッチできるレベルで、Vimエディタのテキストオブジェクトをつくる
+" NeoBundle 'git://github.com/kana/vim-textobj-user.git'
+
+" テキストを直感的に移動、複製
+"NeoBundle 'git://github.com/t9md/vim-textmanip.git'
+"
+" カーソル位置のコンテキストから自動的に filetype を切り換える
+" NeoBundle 'git://github.com/osyo-manga/vim-precious.git'
+
+" ヘッダとソースで行き来する
+" :A
+" :AS
+" :AV
+" :AT
+"NeoBundle 'git://github.com/vim-scripts/a.vim.git'
+
+" }}}
+
+"--------------------------------------------------------------------------------------------
 
 " SQLUtilities : SQL整形、生成ユーティリティ
 " NeoBundle 'SQLUtilities'
@@ -380,24 +448,6 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
 "NeoBundle 'git://github.com/Rip-Rip/clang_complete.git'
 
 "--------------------------------------------------------------------------------------------
-" 外部コマンドを非同期で実行可能に
-if $SUDO_USER != ''
-else
-  NeoBundle 'Shougo/vimproc', {
-            \ 'build' : {
-            \     'windows' : 'make -f make_mingw64.mak',
-            \     'cygwin' : 'make -f make_cygwin.mak',
-            \     'mac' : 'make -f make_mac.mak',
-            \     'unix' : 'make -f make_unix.mak',
-            \ }}
-
-  NeoBundle 'Shougo/vimshell.git'
-
-  " Vim上でプログラムを実行。編集中のファイルを簡単に実行できるプラグイン
-  NeoBundle 'thinca/vim-quickrun.git'
-endif
-
-"--------------------------------------------------------------------------------------------
 " 09=other
 
 " 非同期で make を実行し、その結果を unite.vim へと出力
@@ -409,11 +459,6 @@ endif
 " " zoom
 " "NeoBundle 'zoom.vim'
 " "NeoBundle 'line-diff'
-" タブエディタ風にバッファ管理ウィンドウを表示する
-" NeoBundle 'minibufexpl.vim'
-
-" " %による対応括弧へのカーソル移動機能を拡張
-" NeoBundle 'matchit.zip'
 
 " " Twitter :FriendsTwitter :PosttoTwitter :UserTwitter :RepliesTwitter :NextTwitter
 " NeoBundle 'TwitVim'
@@ -425,12 +470,6 @@ endif
 
 " コードからそのコンテキストの範囲（python << EOF ～ EOF の間）やその filetype を取得する為のライブラリプラグイン
 " NeoBundle 'git://github.com/Shougo/context_filetype.vim.git'
-
-" 正規表現でマッチできるレベルで、Vimエディタのテキストオブジェクトをつくる
-" NeoBundle 'git://github.com/kana/vim-textobj-user.git'
-
-" カーソル位置のコンテキストから自動的に filetype を切り換える
-" NeoBundle 'git://github.com/osyo-manga/vim-precious.git'
 
 "--------------------------------------------------------------------------------------------
 " plugin and index on!!

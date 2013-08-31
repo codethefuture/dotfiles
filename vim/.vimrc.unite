@@ -1,0 +1,61 @@
+" Utils "{{{
+
+NeoBundleLazy 'Shougo/unite.vim', {
+      \ 'autoload' : {
+      \   'commands' : [ {
+      \     'name' : 'Unite',
+      \     'complete' : 'customlist,unite#complete_source'},
+      \     'UniteBookmarkAdd', 'UniteClose', 'UniteResume',
+      \     'UniteWithBufferDir', 'UniteWithCurrentDir', 'UniteWithCursorWord',
+      \     'UniteWithInput', 'UniteWithInputDirectory']
+      \ }}
+
+NeoBundleLazy 'basyura/unite-rails', {
+      \ 'depends' : 'Shougo/unite.vim',
+      \ 'autoload' : {
+      \   'unite_sources' : [
+      \     'rails/bundle', 'rails/bundled_gem', 'rails/config',
+      \     'rails/controller', 'rails/db', 'rails/destroy', 'rails/features',
+      \     'rails/gem', 'rails/gemfile', 'rails/generate', 'rails/git', 'rails/helper',
+      \     'rails/heroku', 'rails/initializer', 'rails/javascript', 'rails/lib', 'rails/log',
+      \     'rails/mailer', 'rails/model', 'rails/rake', 'rails/route', 'rails/schema', 'rails/spec',
+      \     'rails/stylesheet', 'rails/view'
+      \   ]
+      \ }}
+
+" Railsプロジェクトで,Unite rails_best_practices
+NeoBundleLazy 'alpaca-tc/unite-rails_best_practices', {
+      \ 'depends' : 'Shougo/unite.vim',
+      \ 'build' : {
+      \    'mac': 'gem install rails_best_practices',
+      \    'unix': 'gem install rails_best_practices',
+      \ },
+      \ 'autoload': {
+      \   'unite_sources': 'rails_best_practices'
+      \ }}
+
+" rubyのファイルを開きながら、Unite reek
+NeoBundleLazy 'alpaca-tc/unite-reek',{
+      \ 'build' : {
+      \     'mac' :  'gem install reek',
+      \     'unix' : 'gem install reek',
+      \  }}
+
+"NeoBundle 'taka84u9/vim-ref-ri', {
+"      \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
+"      \ 'autoload': { 'filetypes': g:my.ft.ruby_files } }
+
+"NeoBundleLazy 'tsukkee/unite-tag', { 'autoload' : {
+"      \ 'unite_sources' : 'tag'
+"      \ }}
+
+"NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : {
+"      \ 'unite_sources' : ['history/command', 'history/search']
+"      \ }}
+
+" 非同期で make を実行し、その結果を unite.vim へと出力
+" NeoBundle 'Shougo/unite-build'
+
+
+" }}}
+

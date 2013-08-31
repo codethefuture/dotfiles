@@ -204,6 +204,12 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
 " 対応する括弧等を補間
 "NeoBundle 'git://github.com/kana/vim-smartinput.git'
 
+" Vim から Eclipse の機能を利用する
+"NeoBundleLazy 'alpaca-tc/eclim', { 'autoload' : {
+"      \ 'commands' : ['ProjectCreate', 'PingEclim'],
+"      \ 'function_prefix': 'eclim'
+"      \ }}
+
 " }}}
 
 "--------------------------------------------------------------------------------------------
@@ -359,16 +365,14 @@ NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
 
 " 検索移動
 NeoBundle 'git://github.com/goldfeld/vim-seek.git'
+" ファイル名を検索する際に、少々文字が抜けていてもガンガン検索
+"NeoBundle 'wincent/Command-T.git'
 
 " " ソースコードを追いかけるのに便利
 " NeoBundle 'Source-Explorer-srcexpl.vim'
 " ソースコード上のメソッド宣言、変数宣言の一覧を表示
 " brew install ctags
 NeoBundle 'git://github.com/majutsushi/tagbar.git'
-" }}}
-
-"--------------------------------------------------------------------------------------------
-" {{{
 
 " マルチバイト対応の整形
 NeoBundleLazy 'h1mesuke/vim-alignta', {

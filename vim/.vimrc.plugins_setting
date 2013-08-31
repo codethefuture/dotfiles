@@ -993,6 +993,7 @@ if s:bundle_tap('indentLine.vim') " {{{
     let g:indentLine_fileType=g:my.ft.program_files
     " let g:indentLine_noConcealCursor=
     " hi Conceal ctermfg=239 ctermbg=NONE
+    " ¦┆│
   endfunction
   call s:bundle_untap()
 endif " }}}
@@ -1012,7 +1013,6 @@ if s:bundle_tap('indent_guides.vim') " {{{
     augroup MyAutoCmd
       au BufEnter * let g:indent_guides_guide_size=&tabstop
     augroup END
-
   endfunction
   call s:bundle_untap()
 endif " }}}

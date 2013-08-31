@@ -647,7 +647,7 @@ if s:bundle_tap('vimfiler.vim') " {{{
   "au BufWritePost *.rb call RubyLint()
   "au BufWritePost *.erb call RubyLint()
   "au BufWritePost *.slim call RubyLint()
-  au FileType ruby noremap <C-l> :call RubyLint()<CR>
+  "au FileType ruby noremap <C-l> :call RubyLint()<CR>
 
   function! RubyLint()
     let result = system( &ft . ' -c ' . bufname(""))
@@ -980,26 +980,44 @@ let g:alpaca_update_tags_config = {
 "nnoremap <leader>t :Tlist<CR>
 
 "------------------------------------
+" indentline.vim
 " vim-indent-guides.vim
 "------------------------------------
 
-"{{{
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_start_level = 2
-let g:indent_guides_guide_size = 1
+if s:bundle_tap('indentLine.vim') " {{{
+  function! s:tapped_bundle.hooks.on_source(bundle)
+    nnoremap <Space>i :<C-U>IndentLinesToggle<CR>
+    let g:indentLine_color_term = 239
+    " let g:indentLine_color_gui = '#A4E57E'
+    " let g:indentLine_char = 'c'
+    let g:indentLine_fileType=g:my.ft.program_files
+    " let g:indentLine_noConcealCursor=
+    " hi Conceal ctermfg=239 ctermbg=NONE
+  endfunction
+  call s:bundle_untap()
+endif " }}}
 
-augroup indentguides
-    autocmd!
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesEven ctermbg=236
-    autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd ctermbg=235
-augroup END
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_color_change_percent=20
-let g:indent_guides_space_guides=1
-au FileType coffee,ruby,javascript IndentGuidesEnable
-nmap <silent><Leader>ig <Plug>IndentGuidesToggle
+if s:bundle_tap('indent_guides.vim') " {{{
+  function! s:tapped_bundle.hooks.on_source(bundle)
+    let g:indent_guides_auto_colors=0
+    let g:indent_guides_color_change_percent = 20
+    let g:indent_guides_enable_on_vim_startup=1
+    let g:indent_guides_guide_size=1
+    let g:indent_guides_space_guides = 1
+    let g:indent_guides_start_level = 2
+    hi IndentGuidesOdd  ctermbg=235
+    hi IndentGuidesEven ctermbg=233
+    nnoremap <Space>i :<C-U>IndentGuidesToggle<CR>
 
-" Tabs
+    augroup MyAutoCmd
+      au BufEnter * let g:indent_guides_guide_size=&tabstop
+    augroup END
+
+  endfunction
+  call s:bundle_untap()
+endif " }}}
+
+" Tabs "{{{
 nnoremap <Space>t t
 nnoremap <Space>T T
 nnoremap t <Nop>
@@ -1007,8 +1025,9 @@ nnoremap <silent> tc :<C-u>tabnew<CR>:tabmove<CR>
 nnoremap <silent> tk :<C-u>tabclose<CR>
 nnoremap <silent> tn :<C-u>tabnext<CR>
 nnoremap <silent> tp :<C-u>tabprevious<CR>
+"}}}
 
-" FuzzyFinder.vim
+" FuzzyFinder.vim "{{{
 nnoremap <Space>f f
 nnoremap <Space>F F
 nnoremap f <Nop>

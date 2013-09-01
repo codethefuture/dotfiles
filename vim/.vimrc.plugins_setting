@@ -118,8 +118,8 @@ if s:bundle_tap('unite.vim') " {{{
       " 単語単位からパス単位で削除するように変更
       imap <buffer> <C-w> <Plug>(unite_delete_backward_path)
       " ESCキーを2回押すと終了する
-      nmap <silent><buffer> <ESC><ESC> q
-      imap <silent><buffer> <ESC><ESC> <ESC>q
+      "nmap <silent><buffer> <ESC><ESC> q
+      "imap <silent><buffer> <ESC><ESC> <ESC>q
       " Ctrl-cキーを押すと終了する
       nmap <silent><buffer> <C-c> q
       imap <silent><buffer> <C-c> <C-c>q
@@ -1017,44 +1017,39 @@ if s:bundle_tap('indent_guides.vim') " {{{
   call s:bundle_untap()
 endif " }}}
 
-" Tabs "{{{
-nnoremap <Space>t t
-nnoremap <Space>T T
-nnoremap t <Nop>
-nnoremap <silent> tc :<C-u>tabnew<CR>:tabmove<CR>
-nnoremap <silent> tk :<C-u>tabclose<CR>
-nnoremap <silent> tn :<C-u>tabnext<CR>
-nnoremap <silent> tp :<C-u>tabprevious<CR>
-"}}}
-
 " FuzzyFinder.vim "{{{
-nnoremap <Space>f f
-nnoremap <Space>F F
-nnoremap f <Nop>
-nnoremap <silent> fb :<C-u>FufBuffer!<CR>
-nnoremap <silent> ff :<C-u>FufFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
-nnoremap <silent> fm :<C-u>FufMruFile!<CR>
-nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
-nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
-nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
-"}}}
+if s:bundle_tap('fuzzyfinder.vim') " {{{
+  function! s:tapped_bundle.hooks.on_source(bundle)
+    nnoremap <Space>f f
+    nnoremap <Space>F F
+    nnoremap f <Nop>
+    nnoremap <silent> fb :<C-u>FufBuffer!<CR>
+    nnoremap <silent> ff :<C-u>FufFile! <C-r>=expand('%:~:.')[:-1-len(expand('%:~:.:t'))]<CR><CR>
+    nnoremap <silent> fm :<C-u>FufMruFile!<CR>
+    nnoremap <silent> tb :<C-u>tabnew<CR>:tabmove<CR>:FufBuffer!<CR>
+    nnoremap <silent> tf :<C-u>tabnew<CR>:tabmove<CR>:FufFile! <C-r>=expand('#:~:.')[:-1-len(expand('#:~:.:t'))]<CR><CR>
+    nnoremap <silent> tm :<C-u>tabnew<CR>:tabmove<CR>:FufMruFile!<CR>
+  endfunction
+  call s:bundle_untap()
+endif " }}}
 
 "------------------------------------
 " vim-textmanip
 "------------------------------------
 
-"{{{
-" 選択したテキストの移動
-vmap <C-j> <Plug>(Textmanip.move_selection_down)
-vmap <C-k> <Plug>(Textmanip.move_selection_up)
-vmap <C-h> <Plug>(Textmanip.move_selection_left)
-vmap <C-l> <Plug>(Textmanip.move_selection_right)
-
-" 行の複製
-vmap <D-d> <Plug>(Textmanip.duplicate_selection_v)
-nmap <D-d> <Plug>(Textmanip.duplicate_selection_n)
-"}}}
-
+if s:bundle_tap('textmanip.vim') " {{{
+  function! s:tapped_bundle.hooks.on_source(bundle)
+    " 選択したテキストの移動
+    vmap <C-j> <Plug>(Textmanip.move_selection_down)
+    vmap <C-k> <Plug>(Textmanip.move_selection_up)
+    vmap <C-h> <Plug>(Textmanip.move_selection_left)
+    vmap <C-l> <Plug>(Textmanip.move_selection_right)
+    " 行の複製
+    vmap <D-d> <Plug>(Textmanip.duplicate_selection_v)
+    nmap <D-d> <Plug>(Textmanip.duplicate_selection_n)
+  endfunction
+  call s:bundle_untap()
+endif " }}}
 
 "------------------------------------
 " sass-compile

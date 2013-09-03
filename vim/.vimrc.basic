@@ -180,7 +180,7 @@ nnoremap <Space>m :<C-u>marks
 nnoremap <Space>r :<C-u>registers
 
 "TypeScript
-autocmd! BufNewFile,BufRead *.ts setf typescript
+"autocmd! BufNewFile,BufRead *.ts setf typescript
 
 " QuickFix を自動で開く
 " grep 等をしたら QF 自動で開く

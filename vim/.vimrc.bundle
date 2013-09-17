@@ -78,7 +78,7 @@ NeoBundle 'Shougo/vimproc', {
           \ }}
 endif
 
-NeoBundleLazy 'Shougo/vimshell', {
+NeoBundle 'Shougo/vimshell', {
       \ 'autoload' : {
       \   'commands' : [{
       \     'name' : 'VimShell',
@@ -88,7 +88,7 @@ NeoBundleLazy 'Shougo/vimshell', {
       \ }}
 
 NeoBundle 'Shougo/unite.vim'
-"NeoBundleLazy 'Shougo/unite.vim', {
+"NeoBundle 'Shougo/unite.vim', {
 "      \ 'autoload' : {
 "      \   'commands' : [ {
 "      \     'name' : 'Unite',
@@ -102,22 +102,21 @@ NeoBundle 'Shougo/unite.vim'
 
 
 "--------------------------------------------------------------------------------------------
-
 " neocomplete " {{{
 
 if has("lua")
-  NeoBundleLazy 'Shougo/neocomplete', { 'autoload' : {
+  NeoBundle 'Shougo/neocomplete', { 'autoload' : {
         \   'insert' : 1,
         \ }}
 else
-  NeoBundleLazy 'Shougo/neocomplete', {
+  NeoBundle 'Shougo/neocomplete', {
         \ 'autoload' : {
         \   'insert' : 1,
         \ },
         \ }
 endif
 
-NeoBundleLazy 'Shougo/neosnippet', {
+NeoBundle 'Shougo/neosnippet', {
       \ 'autoload' : {
       \   'commands' : ['NeoSnippetEdit', 'NeoSnippetSource'],
       \   'filetypes' : 'snippet',
@@ -129,7 +128,7 @@ if has("ruby")
   NeoBundle 'tpope/vim-rails', { 'autoload' : {
         \ 'filetypes' : ['slim', 'haml', 'ruby', 'eruby'] }}
 
-  NeoBundleLazy 'alpaca-tc/alpaca_complete',{
+  NeoBundle 'alpaca-tc/alpaca_complete',{
         \ 'depends' : [ 'tpope/vim-rails'],
         \ 'build' : {
         \     'mac' : 'gem install alpaca_complete',
@@ -147,7 +146,7 @@ if has("ruby")
   "            \ }}
 
   " Railsプロジェクトで,Unite rails_best_practices
-  NeoBundleLazy 'alpaca-tc/unite-rails_best_practices', {
+  NeoBundle 'alpaca-tc/unite-rails_best_practices', {
         \ 'depends' : 'Shougo/unite.vim',
         \ 'build' : {
         \    'mac': 'gem install rails_best_practices',
@@ -156,16 +155,16 @@ if has("ruby")
         \ 'autoload': {
         \   'unite_sources': 'rails_best_practices'
         \ }}
-  NeoBundleLazy 'basyura/unite-rails'
+  NeoBundle 'basyura/unite-rails'
 
-  "NeoBundleLazy 'alpaca-tc/neorspec.vim', {
+  "NeoBundle 'alpaca-tc/neorspec.vim', {
   "      \ 'depends' : ['alpaca-tc/vim-rails', 'tpope/vim-dispatch'],
   "      \ 'autoload' : {
   "      \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
   "      \ }}
 
   " rubyのファイルを開きながら、Unite reek
-  NeoBundleLazy 'alpaca-tc/unite-reek',{
+  NeoBundle 'alpaca-tc/unite-reek',{
         \ 'build' : {
         \     'mac' :  'gem install reek',
         \     'unix' : 'gem install reek',
@@ -173,13 +172,13 @@ if has("ruby")
 
 endif
 
-NeoBundleLazy 'alpaca-tc/vim-endwise.git', {
+NeoBundle 'alpaca-tc/vim-endwise.git', {
       \ 'autoload' : {
       \   'insert' : 1,
       \ }}
 
 " %による対応括弧へのカーソル移動機能を拡張
-NeoBundleLazy 'edsono/vim-matchit', { 'autoload' : {
+NeoBundle 'edsono/vim-matchit', { 'autoload' : {
       \ 'filetypes': 'ruby',
       \ 'mappings' : ['nx', '%'] }}
 
@@ -187,17 +186,17 @@ NeoBundleLazy 'edsono/vim-matchit', { 'autoload' : {
 "      \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
 "      \ 'autoload': { 'filetypes': g:my.ft.ruby_files } }
 
-NeoBundleLazy 'alpaca-tc/alpaca_tags', {
+NeoBundle 'alpaca-tc/alpaca_tags', {
       \ 'depends': 'Shougo/vimproc',
       \ 'autoload' : {
       \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
       \ }}
 
-"NeoBundleLazy 'tsukkee/unite-tag', { 'autoload' : {
+"NeoBundle 'tsukkee/unite-tag', { 'autoload' : {
 "      \ 'unite_sources' : 'tag'
 "      \ }}
 
-"NeoBundleLazy 'thinca/vim-unite-history', { 'autoload' : {
+"NeoBundle 'thinca/vim-unite-history', { 'autoload' : {
 "      \ 'unite_sources' : ['history/command', 'history/search']
 "      \ }}
 
@@ -205,7 +204,7 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
 "NeoBundle 'git://github.com/kana/vim-smartinput.git'
 
 " Vim から Eclipse の機能を利用する
-"NeoBundleLazy 'alpaca-tc/eclim', { 'autoload' : {
+"NeoBundle 'alpaca-tc/eclim', { 'autoload' : {
 "      \ 'commands' : ['ProjectCreate', 'PingEclim'],
 "      \ 'function_prefix': 'eclim'
 "      \ }}
@@ -218,19 +217,19 @@ NeoBundleLazy 'alpaca-tc/alpaca_tags', {
 " vim-quickrun " {{{
 
 " Vim上でプログラムを実行。編集中のファイルを簡単に実行できるプラグイン
-NeoBundleLazy 'thinca/vim-quickrun', { 'autoload' : {
+NeoBundle 'thinca/vim-quickrun', { 'autoload' : {
       \   'mappings' : [['nxo', '<Plug>(quickrun)']],
       \   'commands' : 'QuickRun' }}
 
 " sudo easy_install http://closure-linter.googlecode.com/files/closure_linter-latest.tar.gz
-NeoBundleLazy 'scrooloose/syntastic', { 'autoload': {
+NeoBundle 'scrooloose/syntastic', { 'autoload': {
       \ 'build' : {
       \   'mac' : join(['brew install tidy', 'brew install csslint', 'gem install sass', 'npm install -g jslint', 'gem install rubocop'], ' && ')
       \ },
       \ 'filetypes' : g:my.ft.program_files }}
 
 " エラーがある場所をhilight
-"NeoBundleLazy 'errormarker.vim'
+"NeoBundle 'errormarker.vim'
 
 " }}}
 
@@ -272,7 +271,7 @@ NeoBundle 'git://github.com/cakebaker/scss-syntax.vim.git'
 NeoBundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
 " slim syntax
-NeoBundle 'git://github.com/slim-template/vim-slim.git'
+"NeoBundle 'git://github.com/slim-template/vim-slim.git'
 
 " "JSX
 " "NeoBundle 'git://github.com/jsx/jsx.vim.git'
@@ -375,24 +374,24 @@ NeoBundle 'git://github.com/goldfeld/vim-seek.git'
 NeoBundle 'git://github.com/majutsushi/tagbar.git'
 
 " マルチバイト対応の整形
-NeoBundleLazy 'h1mesuke/vim-alignta', {
+NeoBundle 'h1mesuke/vim-alignta', {
       \ 'autoload' : {
       \   'unite_sources' : 'alignta',
       \   'commands' : ['Align']
       \ }}
 " テキスト整形
-NeoBundleLazy 'junegunn/vim-easy-align', { 'autoload': {
+NeoBundle 'junegunn/vim-easy-align', { 'autoload': {
       \ 'commands' : ['EasyAlign'] }}
 
 " インデント
 NeoBundle 'IndentAnything'
 if has("conceal")
-  NeoBundleLazy 'Yggdroot/indentLine', { 'autoload' : {
+  NeoBundle 'Yggdroot/indentLine', { 'autoload' : {
         \   'commands' : ["IndentLinesReset", "IndentLinesToggle"],
         \   'filetypes': g:my.ft.program_files,
         \ }}
 else
-  NeoBundleLazy 'nathanaelkane/vim-indent-guides', {
+  NeoBundle 'nathanaelkane/vim-indent-guides', {
         \ 'autoload': {
         \   'commands': ['IndentGuidesEnable', 'IndentGuidesToggle'],
         \   'filetypes': g:my.ft.program_files,
@@ -404,11 +403,11 @@ endif
 " NeoBundle 'tpope/vim-surround'
 
 " " ビジュアルモードや行単位でコメントアウトしたりコメントをハズしたり
-NeoBundleLazy 'tomtom/tcomment_vim', { 'autoload' : {
+NeoBundle 'tomtom/tcomment_vim', { 'autoload' : {
       \ 'commands' : ['TComment', 'TCommentAs', 'TCommentMaybeInline'] }}
 " 簡単にoperatorを定義できるようにする
-NeoBundleLazy 'kana/vim-operator-user'
-NeoBundleLazy 'kana/vim-operator-replace', {
+NeoBundle 'kana/vim-operator-user'
+NeoBundle 'kana/vim-operator-replace', {
       \ 'depends' : 'vim-operator-user',
       \ 'autoload' : {
       \   'mappings' : [

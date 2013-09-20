@@ -46,7 +46,7 @@ set fileformat=unix
 set encoding=utf-8
 
 " こっちは日本語フォント
-set guifontwide=Ricty_for_Powerline:h14
+"set guifontwide=Ricty_for_Powerline:h14
 
 " TerminalVimの設定
 "set columns=158
@@ -143,8 +143,8 @@ nnoremap <leader><space> :noh<CR>
 " in insert mode, jj means <ESC>.
 inoremap jj <ESC>
 
-" Escの2回押しでハイライト消去
-nmap <ESC><ESC> ;nohlsearch<CR><ESC>
+" ハイライト消去
+nmap <leader><ESC> ;nohlsearch<CR><ESC>
 
 " ,wで水平分割→アクティブに
 " <leader>w means split and activate.
@@ -180,23 +180,33 @@ nnoremap <Space>m :<C-u>marks
 nnoremap <Space>r :<C-u>registers
 
 "TypeScript
-autocmd! BufNewFile,BufRead *.ts setf typescript
+"autocmd! BufNewFile,BufRead *.ts setf typescript
 
 " QuickFix を自動で開く
 " grep 等をしたら QF 自動で開く
 autocmd QuickfixCmdPost make,grep,grepadd,vimgrep if len(getqflist()) != 0 | copen | endif
 
-" 範囲選択して Tab でインデント
-vnoremap <tab> >gv
-vnoremap <S-tab> <gv
+" Tabs "{{{
+  " 範囲選択して Tab でインデント
+  vnoremap <tab> >gv
+  vnoremap <S-tab> <gv
 
-" Tab Pages
-nnoremap <C-t>  <Nop>
-nnoremap <C-t>n  :<C-u>tabnew<CR>
-nnoremap <C-t>c  :<C-u>tabclose<CR>
-nnoremap <C-t>o  :<C-u>tabonly<CR>
-nnoremap <C-t>j  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
-nnoremap <C-t>k  gT
+  " Tab Pages
+  nnoremap <C-t>  <Nop>
+  nnoremap <C-t>n  :<C-u>tabnew<CR>
+  nnoremap <C-t>c  :<C-u>tabclose<CR>
+  nnoremap <C-t>o  :<C-u>tabonly<CR>
+  nnoremap <C-t>j  :<C-u>execute 'tabnext' 1 + (tabpagenr() + v:count1 - 1) % tabpagenr('$')<CR>
+  nnoremap <C-t>k  gT
+
+  nnoremap <Space>t t
+  nnoremap <Space>T T
+  nnoremap t <Nop>
+  nnoremap <silent> tc :<C-u>tabnew<CR>:tabmove<CR>
+  nnoremap <silent> tk :<C-u>tabclose<CR>
+  nnoremap <silent> tn :<C-u>tabnext<CR>
+  nnoremap <silent> tp :<C-u>tabprevious<CR>
+"}}}
 
 " leaderを,に変更
 " leader is ,

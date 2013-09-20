@@ -7,7 +7,7 @@ if has('gui_macvim')
   set imdisable " IMを無効化
   set transparency=8 " 透明度を指定
   set antialias
-  set guifont=Ricty\ for\ Powerline:h14
+  "set guifont=Ricty\ for\ Powerline:h14
   set t_Co=256
 
   set guioptions+=a

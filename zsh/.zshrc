@@ -476,7 +476,7 @@ dumb)
 esac
 
 
-export EDITOR=vim
+export EDITOR=mvim
 export MANPATH=$MANPATH:/opt/local/man:/usr/local/share/man
 
 expand-to-home-or-insert () {

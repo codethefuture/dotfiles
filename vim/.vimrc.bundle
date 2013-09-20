@@ -186,11 +186,11 @@ NeoBundle 'edsono/vim-matchit', { 'autoload' : {
 "      \ 'depends': ['Shougo/unite.vim', 'thinca/vim-ref'],
 "      \ 'autoload': { 'filetypes': g:my.ft.ruby_files } }
 
-NeoBundle 'alpaca-tc/alpaca_tags', {
-      \ 'depends': 'Shougo/vimproc',
-      \ 'autoload' : {
-      \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
-      \ }}
+"NeoBundle 'alpaca-tc/alpaca_tags', {
+"      \ 'depends': 'Shougo/vimproc',
+"      \ 'autoload' : {
+"      \   'commands': ['AlpacaTagsUpdate', 'AlpacaTagsSet', 'AlpacaTagsBundle']
+"      \ }}
 
 "NeoBundle 'tsukkee/unite-tag', { 'autoload' : {
 "      \ 'unite_sources' : 'tag'
@@ -271,7 +271,7 @@ NeoBundle 'git://github.com/cakebaker/scss-syntax.vim.git'
 NeoBundle 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 
 " slim syntax
-"NeoBundle 'git://github.com/slim-template/vim-slim.git'
+NeoBundle 'git://github.com/slim-template/vim-slim.git'
 
 " "JSX
 " "NeoBundle 'git://github.com/jsx/jsx.vim.git'

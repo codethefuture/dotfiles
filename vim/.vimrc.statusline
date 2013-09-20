@@ -39,13 +39,11 @@ set statusline+=%=\ %{fugitive#statusline()}                     "git  branch �
 set statusline+=\ (%l/%L,%v)                                     "行/行数、列
 
 " vim-powerlineでフォントにパッチを当てないなら以下をコメントアウト
-let g:Powerline_symbols = 'fancy'
+"let g:Powerline_symbols = 'fancy'
 " フォントサイズはお好みで
-set guifont=Ricty\ for\ Powerline:h14
-
-let g:Powerline_theme ='jellybeans'
-let g:Powerline_colorscheme ='jellybeans'
-
+"set guifont=Ricty\ for\ Powerline:h14
+"let g:Powerline_theme ='jellybeans'
+"let g:Powerline_colorscheme ='jellybeans'
 
 "ステータスラインに文字コードと改行文字を表示する
 " if winwidth(0) >= 120

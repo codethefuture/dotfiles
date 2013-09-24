@@ -1,3 +1,4 @@
+brew 'sg'
 brew 'atk'
 brew 'bdw-gc'
 brew 'cairo'

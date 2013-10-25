@@ -244,6 +244,9 @@ NeoBundle 'scrooloose/syntastic', { 'autoload': {
 NeoBundle 'JavaScript-syntax'
 " Javascript indent
 NeoBundle 'pangloss/vim-javascript'
+" インテリジェンスなJavaScript開発をサポート
+" node.jsが必要
+NeoBundle 'marijnh/tern_for_vim'
 " JavaScript をGoogleStyleで整形する
 " https://github.com/teppeis/fixclosure
 NeoBundle 'git://github.com/teppeis/fixclosure.git'

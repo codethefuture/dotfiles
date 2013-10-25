@@ -72,6 +72,9 @@ alias refe='nocorrect refe'
 alias g='git'
 compdef g=git
 
+alias b='bundle'
+alias be='bundle exec'
+
 alias java='nocorrect java'
 alias cp='nocorrect cp -irp'
 alias erl='nocorrect erl'

@@ -107,7 +107,7 @@
   commitencoding = UTF-8
 
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = /Users/oohira_takeshi/.gitignore
   pager = lv -c
   editor = vim
 

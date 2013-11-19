@@ -355,7 +355,8 @@ NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 NeoBundle 'git://github.com/sjl/gundo.vim.git'
 
 " YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
-NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
+"NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
+NeoBundle 'git://github.com/LeafCage/yankround.vim.git'
 
 " クリップボードにヤンクする
 "NeoBundle 'git://github.com/vim-scripts/yanktmp.vim.git'

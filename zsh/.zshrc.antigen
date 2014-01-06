@@ -8,6 +8,7 @@ if [[ -f $HOME/.zsh/antigen/antigen.zsh ]]; then
         git
         git-flow
         osx
+        zsh-users/zsh-completions
         zsh-users/zsh-syntax-highlighting
 EOBUNDLES
 

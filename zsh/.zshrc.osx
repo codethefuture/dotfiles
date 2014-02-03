@@ -15,11 +15,13 @@ alias vi='mvim'
 export PATH=$PATH:~/bin
 
 ##Java
-#export JAVA_HOME=/Library/Java/JavaVirtualMachines/1.7.0.jdk/Contents/Home
-# export JAVA_HOME=/Library/Java/Home
-#export PATH=$JAVA_HOME/bin:$PATH
+export JAVA_HOME=/Library/Java/JavaVirtualMachines/jdk1.7.0_51.jdk/Contents/Home
+export PATH=$PATH:$JAVA_HOME/bin
+
 # デフォルトエンコーディングSJISをUTF-8へ
 export _JAVA_OPTIONS="-Dfile.encoding=UTF-8"
+export ANDROID_HOME=$HOME/Documents/dev/AndroidSDK/sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # rsense, ruby
 export RSENSE_HOME="/usr/local/opt/rsense-0.3"

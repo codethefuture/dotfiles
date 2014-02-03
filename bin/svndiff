@@ -1,0 +1,4 @@
+#!/bin/bash
+SVN="/usr/local/bin/svn"  #環境に合わせて変えるべし
+VIM="/Applications/MacVim.app/Contents/MacOS/Vim"  #環境に合わせて変えるべし
+$SVN diff $@ | $VIM -R -

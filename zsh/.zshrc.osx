@@ -1,5 +1,16 @@
 export LSCOLORS=ExFxCxDxBxegedabagacad
 
+#export GISTY_DIR=$HOME/Documents/workspace/gists
+#wget http://curl.haxx.se/ca/cacert.pem
+#export GISTY_SSL_CA=/usr/local/opt/cert.pem
+#export GISTY_SSL_VERIFY="none"
+
+#alias grep='grep --color'
+
+export PATH=$PATH:${HOME}/.cabal/bin
+
+export GOPATH=~/.go
+
 # vim
 # brew install macvim --override-system-vim --with-lua --with-python3 --enable-interp=lua,python,python3,ruby
 # brew install macvim --override-system-vim --with-lua --with-python3 --with-cscope --enable-interp=lua,python,python3,ruby --force --HEAD

@@ -1,0 +1,12 @@
+# MySQL
+export PATH=/usr/local/mysql-5.5/bin:$PATH
+
+# Redis
+export PATH=/usr/local/redis-2.6/bin:$PATH
+
+# workder
+export RESQUE_WORKERS="model_factory,import_common_journal,register_common_journal,delete_common_journal,year_end_close,year_end_unclose,backups,mailer,auto_matcher,output_report_job"
+
+# rbenv
+eval "$(rbenv init -)"
+

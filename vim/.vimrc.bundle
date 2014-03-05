@@ -145,16 +145,6 @@ if has("ruby")
   "            \     'filetypes' : ['ruby']
   "            \ }}
 
-  " Railsプロジェクトで,Unite rails_best_practices
-  NeoBundle 'alpaca-tc/unite-rails_best_practices', {
-        \ 'depends' : 'Shougo/unite.vim',
-        \ 'build' : {
-        \    'mac': 'gem install rails_best_practices',
-        \    'unix': 'gem install rails_best_practices',
-        \ },
-        \ 'autoload': {
-        \   'unite_sources': 'rails_best_practices'
-        \ }}
   NeoBundle 'basyura/unite-rails'
 
   "NeoBundle 'alpaca-tc/neorspec.vim', {
@@ -162,13 +152,6 @@ if has("ruby")
   "      \ 'autoload' : {
   "      \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
   "      \ }}
-
-  " rubyのファイルを開きながら、Unite reek
-  NeoBundle 'alpaca-tc/unite-reek',{
-        \ 'build' : {
-        \     'mac' :  'gem install reek',
-        \     'unix' : 'gem install reek',
-        \  }}
 
 endif
 

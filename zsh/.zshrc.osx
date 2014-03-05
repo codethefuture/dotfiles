@@ -35,7 +35,7 @@ export ANDROID_HOME=$HOME/Documents/dev/AndroidSDK/sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 
 # rsense, ruby
-export RSENSE_HOME="/usr/local/opt/rsense-0.3"
+#export RSENSE_HOME="/usr/local/opt/rsense-0.3"
 
 # Ant
 #export ANT_VERSION=1.8.0
@@ -60,8 +60,8 @@ export INFOPATH
 #export PATH=$PATH:$AIR_HOME/bin:$FLEX_HOME/bin
 
 # Ruby
-export PATH=$HOME/.rvm/bin:$PATH
-if [[ -s ~/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
+#export PATH=$HOME/.rvm/bin:$PATH
+#if [[ -s ~/.rvm/scripts/rvm ]] ; then source $HOME/.rvm/scripts/rvm ; fi
 #eval "$(rbenv init -)"
 
 #export REFE_DATA_DIR=/System/Library/Frameworks/Ruby.framework/Versions/1.8/usr/share/refe

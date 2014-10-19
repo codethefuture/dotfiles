@@ -11,15 +11,15 @@
   ui = auto
 
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
 
 [diff "json"]
   textconv = "perl -MJSON -0e \"print JSON->new->canonical->pretty->encode(decode_json(<>))\""
 
 [mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 
 [diff]
   tool = meld
@@ -93,6 +93,13 @@
 
   # reset
   cancel = !git commit -a -m 'Temporary commit for cancel' && git reset --hard HEAD~
+  # pull-req のコミットをまるっと fetch
+  fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
+  # git pull してからコンフリクトが起きるか事前に確認
+  # git pullする前にローカルレポジトリにどんな変更が行われるか確認
+  pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+  # git の current branch をコマンドで取得
+  current-branch = rev-parse --abbrev-ref HEAD
 
 [merge]
   ff = false

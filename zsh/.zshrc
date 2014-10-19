@@ -677,6 +677,7 @@ esac
 ## local固有設定
 #
 [ -f ~/.zsh/.zshrc.local ] && source ~/.zsh/.zshrc.local
+[ -f ~/.zsh/.zshrc.office ] && source ~/.zsh/.zshrc.office
 
 # tmux 自動起動
 # if [ -z "$TMUX" -a -z "$STY" ]; then

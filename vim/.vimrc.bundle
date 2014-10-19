@@ -155,10 +155,10 @@ if has("ruby")
 
 endif
 
-NeoBundle 'alpaca-tc/vim-endwise.git', {
-      \ 'autoload' : {
-      \   'insert' : 1,
-      \ }}
+"NeoBundle 'alpaca-tc/vim-endwise.git', {
+"      \ 'autoload' : {
+"      \   'insert' : 1,
+"      \ }}
 
 " %による対応括弧へのカーソル移動機能を拡張
 NeoBundle 'edsono/vim-matchit', { 'autoload' : {
@@ -237,7 +237,7 @@ NeoBundle 'git://github.com/teppeis/fixclosure.git'
 "NeoBundle 'git://github.com/mattn/zencoding-vim.git'
 NeoBundle 'git://github.com/mattn/emmet-vim.git'
 " Coffee-script
-"NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
+NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
 " LiveStyle
 " http://livestyle.emmet.io/
 "NeoBundle 'git://github.com/mattn/livestyle-vim.git'

@@ -69,6 +69,7 @@ alias refe='nocorrect refe'
 
 # git
 # alias git='nocorrect git'
+#alias git='git remote -v | grep origin && echo && git'
 alias g='git'
 compdef g=git
 

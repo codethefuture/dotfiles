@@ -1,0 +1,1 @@
+bundle list | grep -v Gems | ruby -ne 'system("gem uninstall -x %s -v \"%s\"" % $_.match(/\*\s+(.+)\s+\((.+)\)/)[1, 2])'

@@ -177,7 +177,14 @@ if s:bundle_tap('unite.vim') " {{{
   endfunction
 
   " For ack.
-  if executable('ag')
+  if executable('sg')
+    let g:unite_source_grep_command = 'sg'
+    let g:unite_source_grep_default_opts =
+          \ '--line-numbers --nocolor --nogroup --hidden --ignore ' .
+          \  '''.hg'' --ignore ''.svn'' --ignore ''.git'' --ignore ''.bzr'''
+    let g:unite_source_grep_recursive_opt = ''
+    let g:unite_source_grep_max_candidates = 200
+  elseif executable('ag')
     " Use ag in unite grep source.
     let g:unite_source_grep_command = 'ag'
     let g:unite_source_grep_default_opts =
@@ -191,13 +198,6 @@ if s:bundle_tap('unite.vim') " {{{
     let g:unite_source_grep_default_opts = '--no-heading --no-color -a'
     let g:unite_source_grep_recursive_opt = ''
   endif
-
-  "------------------------------------
-  " unite-reek, unite-rails_best_practices
-  "------------------------------------
-
-  nnoremap <silent> <C-H><C-R> :<C-u>Unite -no-quit reek<CR>
-  nnoremap <silent> <C-H><C-R><C-R> :<C-u>Unite -no-quit rails_best_practices<CR>
 
   call s:bundle_untap()
 endif " }}}
@@ -921,6 +921,15 @@ let g:RefreshRunningBrowserReturnFocus = 0
 " map <silent> sy :call YanktmpYank()<CR>
 " map <silent> sp :call YanktmpPaste_p()<CR>
 " map <silent> sP :call YanktmpPaste_P()<CR>
+
+"------------------------------------
+" yankround.vim
+"------------------------------------
+
+nmap p <Plug>(yankround-p)
+nmap P <Plug>(yankround-P)
+nmap <C-p> <Plug>(yankround-prev)
+nmap <C-n> <Plug>(yankround-next)
 
 "------------------------------------
 " gundo.vim

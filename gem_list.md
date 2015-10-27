@@ -3,7 +3,9 @@
 * code check
   * rails_best_practices
   * ruby-lint
-  * code_analyzer
+  * metric_fu
+  * rubocop
+  * Brakeman
 * html, css, image
   * chunky_png
   * compass

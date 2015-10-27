@@ -1,0 +1,4 @@
+#!/bin/bash
+GIT="/usr/local/bin/git"  #環境に合わせて変えるべし
+VIM="/Applications/MacVim.app/Contents/MacOS/Vim"  #環境に合わせて変えるべし
+$GIT diff $@ | $VIM -R -

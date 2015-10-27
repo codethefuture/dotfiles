@@ -93,6 +93,13 @@
 
   # reset
   cancel = !git commit -a -m 'Temporary commit for cancel' && git reset --hard HEAD~
+  # pull-req のコミットをまるっと fetch
+  fetch-pulls = fetch origin +refs/pull/*:refs/remotes/pull/*
+  # git pull してからコンフリクトが起きるか事前に確認
+  # git pullする前にローカルレポジトリにどんな変更が行われるか確認
+  pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
+  # git の current branch をコマンドで取得
+  current-branch = rev-parse --abbrev-ref HEAD
 
 [merge]
   ff = false
@@ -107,9 +114,15 @@
   commitencoding = UTF-8
 
 [core]
-  excludesfile = ~/.gitignore
+  excludesfile = /Users/oohira_takeshi/.gitignore
   pager = lv -c
   editor = vim
+
+#git log -p --color | /usr/local/Cellar/git/1.8.4/share/git-core/contrib/diff-highlight/diff-highlight
+[pager]
+  log = diff-highlight | less
+  show = diff-highlight | less
+  diff = diff-highlight | less
 
 [interactive]
   singlekey = true # git add/checkout -p時に，エンターでの決定を省略する

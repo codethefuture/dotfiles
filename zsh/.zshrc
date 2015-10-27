@@ -266,7 +266,7 @@ setopt hist_no_store
 #setopt extended_glob
 
 # zsh の開始・終了時刻をヒストリファイルに書き込む
-#setopt extended_history
+setopt extended_history
 
 # Ctrl+S/Ctrl+Q によるフロー制御を使わないようにする
 #setopt NO_flow_control
@@ -677,6 +677,7 @@ esac
 ## local固有設定
 #
 [ -f ~/.zsh/.zshrc.local ] && source ~/.zsh/.zshrc.local
+[ -f ~/.zsh/.zshrc.office ] && source ~/.zsh/.zshrc.office
 
 # tmux 自動起動
 # if [ -z "$TMUX" -a -z "$STY" ]; then

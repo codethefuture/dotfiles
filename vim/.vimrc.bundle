@@ -145,16 +145,6 @@ if has("ruby")
   "            \     'filetypes' : ['ruby']
   "            \ }}
 
-  " Railsプロジェクトで,Unite rails_best_practices
-  NeoBundle 'alpaca-tc/unite-rails_best_practices', {
-        \ 'depends' : 'Shougo/unite.vim',
-        \ 'build' : {
-        \    'mac': 'gem install rails_best_practices',
-        \    'unix': 'gem install rails_best_practices',
-        \ },
-        \ 'autoload': {
-        \   'unite_sources': 'rails_best_practices'
-        \ }}
   NeoBundle 'basyura/unite-rails'
 
   "NeoBundle 'alpaca-tc/neorspec.vim', {
@@ -163,19 +153,12 @@ if has("ruby")
   "      \   'commands' : ['RSpec', 'RSpecAll', 'RSpecCurrent', 'RSpecNearest', 'RSpecRetry']
   "      \ }}
 
-  " rubyのファイルを開きながら、Unite reek
-  NeoBundle 'alpaca-tc/unite-reek',{
-        \ 'build' : {
-        \     'mac' :  'gem install reek',
-        \     'unix' : 'gem install reek',
-        \  }}
-
 endif
 
-NeoBundle 'alpaca-tc/vim-endwise.git', {
-      \ 'autoload' : {
-      \   'insert' : 1,
-      \ }}
+"NeoBundle 'alpaca-tc/vim-endwise.git', {
+"      \ 'autoload' : {
+"      \   'insert' : 1,
+"      \ }}
 
 " %による対応括弧へのカーソル移動機能を拡張
 NeoBundle 'edsono/vim-matchit', { 'autoload' : {
@@ -244,6 +227,9 @@ NeoBundle 'scrooloose/syntastic', { 'autoload': {
 NeoBundle 'JavaScript-syntax'
 " Javascript indent
 NeoBundle 'pangloss/vim-javascript'
+" インテリジェンスなJavaScript開発をサポート
+" node.jsが必要
+NeoBundle 'marijnh/tern_for_vim'
 " JavaScript をGoogleStyleで整形する
 " https://github.com/teppeis/fixclosure
 NeoBundle 'git://github.com/teppeis/fixclosure.git'
@@ -251,7 +237,7 @@ NeoBundle 'git://github.com/teppeis/fixclosure.git'
 "NeoBundle 'git://github.com/mattn/zencoding-vim.git'
 NeoBundle 'git://github.com/mattn/emmet-vim.git'
 " Coffee-script
-"NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
+NeoBundle 'git://github.com/kchmck/vim-coffee-script.git'
 " LiveStyle
 " http://livestyle.emmet.io/
 "NeoBundle 'git://github.com/mattn/livestyle-vim.git'
@@ -352,7 +338,8 @@ NeoBundle 'git://github.com/scrooloose/nerdtree.git'
 NeoBundle 'git://github.com/sjl/gundo.vim.git'
 
 " YankRing.vim : ヤンクの履歴を管理し、順々に参照、出力できるようにする
-NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
+"NeoBundle 'git://github.com/vim-scripts/YankRing.vim.git'
+NeoBundle 'git://github.com/LeafCage/yankround.vim.git'
 
 " クリップボードにヤンクする
 "NeoBundle 'git://github.com/vim-scripts/yanktmp.vim.git'

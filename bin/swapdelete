@@ -1,0 +1,5 @@
+sudo launchctl unload /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+
+sudo launchctl load /System/Library/LaunchDaemons/com.apple.dynamic_pager.plist
+
+

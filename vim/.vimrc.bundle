@@ -298,7 +298,7 @@ NeoBundle 'git://github.com/tpope/vim-fugitive'
 "NeoBundle 'git://github.com/int3/vim-extradite.git'
 
 " Git diff
-NeoBundle 'git://github.com/airblade/vim-gitgutter.git'
+"NeoBundle 'git://github.com/airblade/vim-gitgutter.git'
 
 " }}}
 

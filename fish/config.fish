@@ -10,7 +10,7 @@ status --is-interactive; and source (rbenv init -|psub)
 fix_path
 
 # alias
-balias g git
+alias g git
 
 function fish_user_key_bindings
   bind \cr 'peco_select_history (commandline -b)'

@@ -1,5 +1,9 @@
+# mysql install
 set -gx LDFLAGS "-L/usr/local/opt/openssl/lib"
 set -gx CPPFLAGS "-I/usr/local/opt/openssl/include"
+
+# path
+set -x PATH $PATH /usr/local/Cellar/git/2.20.1/share/git-core/contrib/diff-highlight
 
 # rbenv
 status --is-interactive; and source (rbenv init -|psub)

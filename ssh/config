@@ -1,0 +1,19 @@
+Host github.com
+  Hostname ssh.github.com
+  Port 443
+  User git
+  IdentityFile ~/.ssh/id_rsa
+  UseKeychain yes
+  AddKeysToAgent yes
+
+Host bitbucket.org
+  User git
+  Port 22
+  HostName bitbucket.org
+  IdentityFile ~/.ssh/bitbucket_id_rsa
+  TCPKeepAlive yes
+  IdentitiesOnly yes
+
+Include configs/*
+Include ~/Dropbox/ssh/config_option
+

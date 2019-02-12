@@ -15,3 +15,4 @@ brew 'tig'
 brew 'tmux'
 brew 'tree'
 
+brew 'pyenv'

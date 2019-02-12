@@ -11,15 +11,15 @@
   ui = auto
 
 [difftool "sourcetree"]
-  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-  path =
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
 
 [diff "json"]
   textconv = "perl -MJSON -0e \"print JSON->new->canonical->pretty->encode(decode_json(<>))\""
 
 [mergetool "sourcetree"]
-  cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-  trustExitCode = true
+	cmd = /private/var/folders/7q/47blczts0vq3s801lmm_jzyrywhxfd/T/AppTranslocation/1DBA1FA3-31C1-417C-B563-2A9E588366E0/d/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
 
 [diff]
   tool = meld
@@ -44,6 +44,7 @@
   f = fetch
   a = add
   ap = add -p              # 選択してgit addするかどうか決める
+  c = commit
   ci = commit -v           # diffの結果がまとめて表示
   ciam = commit --amend    # 直前のcommitを修正
   co = checkout
@@ -100,6 +101,7 @@
   pull-dry-run = !"git fetch origin; B=$(git rev-parse --abbrev-ref HEAD); git diff --stat --summary ${B}..origin/${B}"
   # git の current branch をコマンドで取得
   current-branch = rev-parse --abbrev-ref HEAD
+	delete-merged-branches = !git br --merged | grep -vE '^\\*|master$|develop$|staging$' | xargs -I {%} git branch -d {%}
 
 [merge]
   ff = false
@@ -114,15 +116,15 @@
   commitencoding = UTF-8
 
 [core]
-  excludesfile = /Users/oohira_takeshi/.gitignore
+	excludesfile = ~/.gitignore_global
   pager = lv -c
   editor = vim
 
 #git log -p --color | /usr/local/Cellar/git/1.8.4/share/git-core/contrib/diff-highlight/diff-highlight
-[pager]
-  log = diff-highlight | less
-  show = diff-highlight | less
-  diff = diff-highlight | less
+# [pager]
+#   log = diff-highlight | less
+#   show = diff-highlight | less
+#   diff = diff-highlight | less
 
 [interactive]
   singlekey = true # git add/checkout -p時に，エンターでの決定を省略する
@@ -135,6 +137,3 @@
   ref = https://{host}/{path}/tree/{short_ref}
   rev = https://{host}/{path}/commit/{commit}
   file = "https://{host}/{path}/blob/{short_rev}/{file}{line && \"#L%d\" % line}"
-
-[ghq]
-  root = ~/Documents/dev/

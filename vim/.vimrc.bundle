@@ -1,5 +1,8 @@
 "--------------------------------------------------------------------------------------------
 
+" Note: Skip initialization for vim-tiny or vim-small.
+if 0 | endif
+
 " initialize "{{{
 
 let g:my = {}
@@ -14,7 +17,7 @@ let g:my.conf = {
       \ }
 
 let g:my.dir = {
-      \ 'neobundle'   : expand('~/.vim/.bundle'),
+      \ 'neobundle'   : expand('~/.vim/bundle'),
       \ 'unite'     : expand('~/.vim.trash/unite'),
       \ 'vimref'    : expand('~/.vim.trash/vim-ref'),
       \ 'vimfiler'  : expand('~/.vim.trash/vimfiler'),
@@ -57,14 +60,18 @@ let g:my.ft = {
 set nocompatible               " be iMproved
 filetype plugin indent off     " required!
 if has('vim_starting')
+   if &compatible
+     set nocompatible               " Be iMproved
+  endif
+
+  " Required:
   set runtimepath+=~/.vim/bundle/neobundle.vim/
-  call neobundle#rc(expand('~/.vim/bundle/'))
 endif
 
 "--------------------------------------------------------------------------------------------
 " {{{
 
-"NeoBundleFetch 'Shougo/neobundle.vim'
+NeoBundleFetch 'Shougo/neobundle.vim'
 
 " 外部コマンドを非同期で実行可能に
 if $SUDO_USER != ''
@@ -466,11 +473,6 @@ NeoBundle 'kana/vim-operator-replace', {
 filetype plugin indent on
 
 " Installation check.
-if neobundle#exists_not_installed_bundles()
-  echomsg 'Not installed bundles : ' .
-        \ string(neobundle#get_not_installed_bundle_names())
-  echomsg 'Please execute ":NeoBundleInstall" command.'
-  finish
-endif
+NeoBundleCheck
 
 

@@ -1,3 +1,6 @@
 .zshrc.local
 .zsh_history
+fish/local.fish
+fish/fish_history
+zsh/.zshrc.office
 vim/bundle/*

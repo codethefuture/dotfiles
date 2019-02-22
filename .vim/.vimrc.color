@@ -26,8 +26,8 @@ autocmd BufRead,BufNewFile *.erb set filetype=eruby.html
 "set listchars=eol:$,tab:>\
 
 " hybrid
-colorscheme hybrid
-let g:hybrid_use_Xresources = 1
+"colorscheme hybrid
+"let g:hybrid_use_Xresources = 1
 
 " コマンド実行中は再描画しない
 set lazyredraw

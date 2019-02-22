@@ -6,6 +6,5 @@ Plugin 'VundleVim/Vundle.vim'
 
 
 
-# end
 call vundle#end()
 filetype plugin indent on

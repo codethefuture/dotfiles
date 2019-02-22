@@ -11,15 +11,15 @@
   ui = auto
 
 [difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = 
 
 [diff "json"]
   textconv = "perl -MJSON -0e \"print JSON->new->canonical->pretty->encode(decode_json(<>))\""
 
 [mergetool "sourcetree"]
-	cmd = /private/var/folders/7q/47blczts0vq3s801lmm_jzyrywhxfd/T/AppTranslocation/1DBA1FA3-31C1-417C-B563-2A9E588366E0/d/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+  cmd = /private/var/folders/7q/47blczts0vq3s801lmm_jzyrywhxfd/T/AppTranslocation/1DBA1FA3-31C1-417C-B563-2A9E588366E0/d/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true
 
 [diff]
   tool = meld
@@ -116,7 +116,7 @@
   commitencoding = UTF-8
 
 [core]
-	excludesfile = ~/.gitignore_global
+  excludesfile = ~/.gitignore_global
   pager = lv -c
   editor = vim
 
@@ -137,3 +137,6 @@
   ref = https://{host}/{path}/tree/{short_ref}
   rev = https://{host}/{path}/commit/{commit}
   file = "https://{host}/{path}/blob/{short_rev}/{file}{line && \"#L%d\" % line}"
+
+[ghq]
+  root = ~/Documents/dev/

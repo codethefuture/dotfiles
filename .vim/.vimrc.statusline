@@ -35,7 +35,7 @@ else
 endif
 set statusline+=\ %m\ %r\ %h\ %w                                 "読み込み専用ファイルはRO,変更されたら+とか
 set statusline+=[%{&fileencoding}\ %{&fileformat}\ %{&filetype}]
-set statusline+=%=\ %{fugitive#statusline()}                     "git  branch 表示
+"set statusline+=%=\ %{fugitive#statusline()}                     "git  branch 表示
 set statusline+=\ (%l/%L,%v)                                     "行/行数、列
 
 " vim-powerlineでフォントにパッチを当てないなら以下をコメントアウト

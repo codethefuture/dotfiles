@@ -39,6 +39,10 @@ if [ -f "/usr/local/sbin" ]
   set -g fish_user_paths "/usr/local/sbin" $fish_user_paths
 end
 
+if [ -f "/usr/local/opt/imagemagick@6/bin" ]
+  set -g fish_user_paths "/usr/local/opt/imagemagick@6/bin" $fish_user_paths
+end
+
 # bin
 set -gx PATH $HOME/bin /usr/local/bin /usr/local/opt/mysql/bin $PATH
 

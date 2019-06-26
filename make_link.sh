@@ -8,7 +8,8 @@ _common_link () {
   ln -sf ~/Documents/dev/dotfiles/.vim ~/.vim
   ln -sf ~/Documents/dev/dotfiles/.tmux.conf ~/.tmux.conf
   ln -sf ~/Documents/dev/dotfiles/.gitignore.global ~/.gitignore
-  ln -sf ~/Documents/dev/dotfiles/vscode/storage.json $HOME/Library/Application\ Support/Code
+  ln -sf ~/Documents/dev/dotfiles/vscode/User/settings.json $HOME/Library/Application\ Support/Code/User
+  ln -sf ~/Documents/dev/dotfiles/vscode/User/keybindings.json $HOME/Library/Application\ Support/Code/User
 
   if [ ! -d ~/.config ]; then
     mkdir ~/.config

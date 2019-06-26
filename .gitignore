@@ -4,3 +4,4 @@ fish/local.fish
 fish/fish_history
 zsh/.zshrc.office
 .vim/bundle/*
+.config/karabiner/automatic_backups/*.json
